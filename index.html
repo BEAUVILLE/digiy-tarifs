@@ -151,7 +151,17 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="pioneer.html" class="btn-pioneer">🎁 Offre Pionniers</a></li>
                 <!-- 🔗 Bouton de commande / paiement -->
-                <li><a href="https://digiylyfe.com/commande-payement/" class="btn-primary">Commander & payer</a></li>
+                <li>
+                  <a
+                    href="https://digiylyfe.com/commande-payement/"
+                    class="btn-primary"
+                    data-plan="NAV_GLOBAL"
+                    data-module="multi"
+                    data-origin-button="nav-commande"
+                  >
+                    Commander & payer
+                  </a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -171,7 +181,13 @@
                 </p>
                 <div class="hero-cta">
                     <!-- 🔗 Hero = direct vers commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-hero-primary">
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-hero-primary"
+                      data-plan="UNIVERSAL"
+                      data-module="multi"
+                      data-origin-button="hero-cta"
+                    >
                         🛒 Commander & payer maintenant
                     </a>
                     <a href="#modules" class="btn-hero-secondary">
@@ -576,7 +592,15 @@
                         <li>✅ Mises à jour incluses</li>
                     </ul>
                     <!-- 🔗 redirige vers commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-pricing">Commencer</a>
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-pricing"
+                      data-plan="STARTER_19900"
+                      data-module="multi"
+                      data-origin-button="pricing-starter"
+                    >
+                      Commencer
+                    </a>
                 </div>
 
                 <!-- PRO -->
@@ -592,7 +616,15 @@
                         <li>✅ Analytics avancés</li>
                     </ul>
                     <!-- 🔗 redirige vers commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-pricing primary">Choisir PRO</a>
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-pricing primary"
+                      data-plan="PRO_29900"
+                      data-module="multi"
+                      data-origin-button="pricing-pro"
+                    >
+                      Choisir PRO
+                    </a>
                 </div>
 
                 <!-- BUSINESS -->
@@ -608,7 +640,15 @@
                         <li>✅ Technico-commercial dédié</li>
                     </ul>
                     <!-- 🔗 redirige vers commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-pricing">Choisir BUSINESS</a>
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-pricing"
+                      data-plan="BUSINESS_49900"
+                      data-module="multi"
+                      data-origin-button="pricing-business"
+                    >
+                      Choisir BUSINESS
+                    </a>
                 </div>
             </div>
 
@@ -619,7 +659,15 @@
                     <h3>100 premiers clients : Plan BUSINESS à 29,900 F/mois À VIE</h3>
                     <p>Au lieu de 49,900 F/mois. Économie : 240,000 F/an. Prix garanti à vie.</p>
                     <!-- 🔗 on envoie aussi vers commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-pioneer-cta">Réserver ma place →</a>
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-pioneer-cta"
+                      data-plan="BUSINESS_PIONNIER_29900"
+                      data-module="multi"
+                      data-origin-button="pioneer-banner"
+                    >
+                      Réserver ma place →
+                    </a>
                 </div>
             </div>
         </div>
@@ -715,7 +763,15 @@
                 <p>Rejoins les 100 premiers et bénéficie du prix pionnier à vie</p>
                 <div class="cta-buttons">
                     <!-- 🔗 Offre Pionniers -> commande/paiement -->
-                    <a href="https://digiylyfe.com/commande-payement/" class="btn-cta-primary">🎁 Commander mon plan</a>
+                    <a
+                      href="https://digiylyfe.com/commande-payement/"
+                      class="btn-cta-primary"
+                      data-plan="CTA_GLOBAL"
+                      data-module="multi"
+                      data-origin-button="cta-bottom"
+                    >
+                      🎁 Commander mon plan
+                    </a>
                     <!-- WhatsApp réel -->
                     <a href="https://wa.me/221771342889" class="btn-cta-secondary">💬 Parler à un expert</a>
                 </div>
@@ -778,5 +834,63 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- Supabase + tracking des clics tarifs -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+      const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+      const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
+
+      const pricingClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+      async function logPricingClick(linkEl) {
+        const planCode = linkEl.getAttribute("data-plan") || "UNKNOWN_PLAN";
+        const moduleCode = linkEl.getAttribute("data-module") || "unknown";
+        const originButton = linkEl.getAttribute("data-origin-button") || null;
+        const targetUrl = linkEl.getAttribute("href") || null;
+
+        let userEmail = null;
+        try {
+          const { data: userData } = await pricingClient.auth.getUser();
+          if (userData && userData.user && userData.user.email) {
+            userEmail = userData.user.email;
+          }
+        } catch (e) {
+          console.warn("Pas de session Supabase (landing public), ce n'est pas bloquant.");
+        }
+
+        try {
+          await pricingClient.from("pricing_leads").insert({
+            plan_code: planCode,
+            module: moduleCode,
+            origin_page: "tarifs-public",
+            origin_button: originButton,
+            wp_target_url: targetUrl,
+            extra: userEmail ? { email: userEmail } : null
+          });
+        } catch (err) {
+          console.error("Erreur enregistrement pricing_lead:", err);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const pricingLinks = document.querySelectorAll("a[data-plan]");
+
+        pricingLinks.forEach((linkEl) => {
+          linkEl.addEventListener("click", async (event) => {
+            event.preventDefault();
+            const targetUrl = linkEl.getAttribute("href") || "#";
+
+            try {
+              await logPricingClick(linkEl);
+            } catch (e) {
+              console.error(e);
+            } finally {
+              window.location.href = targetUrl;
+            }
+          });
+        });
+      });
+    </script>
 </body>
 </html>
