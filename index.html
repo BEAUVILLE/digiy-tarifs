@@ -1,837 +1,1089 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DIGIYLYFE - L'écosystème digital africain 0% commission</title>
-  <meta name="description" content="L'écosystème digital qui booste ton business. VTC, Location, Restaurant, Marketplace, Paiement. 0% commission. ∞ possibilités.">
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIGIYLYFE 🦅 — Garde 100% de tes revenus | 0% Commission</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- 🎨 Styles additionnels pour les paliers LOC & RESTO PRO + formation -->
-  <style>
-    .tiers-section {
-      padding: 4rem 0;
-      background: radial-gradient(circle at top, #020617 0, #020617 60%);
-    }
-    .tiers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-    .tier-card {
-      background: #020617;
-      border-radius: 20px;
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      padding: 1.8rem 1.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-    .tier-card::before {
-      content: "";
-      position: absolute;
-      inset: -40%;
-      background:
-        radial-gradient(circle at 0 0, rgba(248, 250, 252, 0.06), transparent 55%),
-        radial-gradient(circle at 100% 0, rgba(248, 113, 22, 0.16), transparent 60%);
-      opacity: 0.85;
-      pointer-events: none;
-    }
-    .tier-header {
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-    .tier-icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 16px;
-      background: #030712;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-    }
-    .tier-title-block h3 {
-      margin: 0;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .tier-title-block p {
-      margin: 0.1rem 0 0;
-      font-size: 0.85rem;
-      opacity: 0.8;
-    }
-    .tier-badge {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 0.3rem 0.8rem;
-      background: rgba(15, 23, 42, 0.9);
-      white-space: nowrap;
-    }
-    .tier-body {
-      position: relative;
-      font-size: 0.9rem;
-    }
-    .tier-body p {
-      margin-bottom: 0.8rem;
-      opacity: 0.9;
-    }
-    .tier-table {
-      border-radius: 14px;
-      border: 1px solid rgba(51, 65, 85, 0.9);
-      overflow: hidden;
-      background: rgba(15, 23, 42, 0.95);
-    }
-    .tier-row {
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      padding: 0.65rem 0.8rem;
-      border-bottom: 1px solid rgba(31, 41, 55, 0.9);
-      align-items: center;
-      font-size: 0.82rem;
-    }
-    .tier-row:last-child {
-      border-bottom: none;
-    }
-    .tier-label {
-      opacity: 0.9;
-    }
-    .tier-price {
-      text-align: right;
-      font-weight: 700;
-      font-family: "Outfit", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-    }
-    .tier-price span {
-      font-size: 0.75rem;
-      opacity: 0.7;
-      margin-left: 0.15rem;
-    }
-    .tier-hint {
-      margin-top: 0.8rem;
-      font-size: 0.8rem;
-      opacity: 0.85;
-    }
-    .tier-hint strong {
-      color: #facc15;
-    }
+        :root {
+            --gold: #FFB800;
+            --gold-dark: #D49700;
+            --black: #0A0A0A;
+            --black-light: #1A1A1A;
+            --green: #00FF88;
+            --red: #FF3366;
+            --white: #FFFFFF;
+            --gray: #A8A8A8;
+        }
 
-    .small-link {
-      font-size: 0.8rem;
-      opacity: 0.8;
-      margin-top: 0.5rem;
-      display: inline-block;
-    }
+        body {
+            font-family: 'Sora', -apple-system, sans-serif;
+            background: var(--black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-    @media (max-width: 768px) {
-      .tiers-section {
-        padding: 3rem 0;
-      }
-    }
-  </style>
+        /* ANIMATIONS */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* HEADER URGENCE */
+        .urgence-banner {
+            background: linear-gradient(135deg, var(--red), #FF6B35);
+            padding: 12px 20px;
+            text-align: center;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(255, 51, 102, 0.4);
+        }
+
+        .urgence-banner span {
+            display: inline-block;
+            animation: pulse 2s infinite;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 184, 0, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
+                var(--black);
+            position: relative;
+            padding: 60px 20px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '∞';
+            position: absolute;
+            font-size: 600px;
+            color: rgba(255, 184, 0, 0.03);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Unbounded', sans-serif;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 184, 0, 0.2);
+            border: 2px solid var(--gold);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            animation: pulse 3s infinite;
+        }
+
+        h1 {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--gray);
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        /* CALCULATEUR LIVE */
+        .live-calculator {
+            background: linear-gradient(135deg, var(--black-light), rgba(255, 184, 0, 0.1));
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px auto;
+            max-width: 800px;
+            box-shadow: 0 10px 50px rgba(255, 184, 0, 0.3);
+            animation: slideIn 1s ease-out 0.3s backwards;
+        }
+
+        .calculator-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .calculator-input {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .input-group input,
+        .input-group select {
+            background: var(--black);
+            border: 2px solid rgba(255, 184, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            color: var(--white);
+            font-size: 1.1rem;
+            font-family: 'Sora', sans-serif;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(255, 184, 0, 0.2);
+        }
+
+        .results-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .result-card.uber {
+            background: linear-gradient(135deg, var(--red), #FF6B35);
+        }
+
+        .result-card.digiy {
+            background: linear-gradient(135deg, var(--green), #00CC6A);
+        }
+
+        .result-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .result-amount {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 10px 0;
+        }
+
+        .result-economy {
+            background: var(--black);
+            padding: 20px;
+            border-radius: 15px;
+            margin-top: 20px;
+            text-align: center;
+            border: 2px solid var(--gold);
+        }
+
+        .result-economy .big-number {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3rem;
+            color: var(--green);
+            font-weight: 800;
+        }
+
+        /* MODULES GRID */
+        .modules-section {
+            padding: 100px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 60px;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .module-card {
+            background: var(--black-light);
+            border: 2px solid rgba(255, 184, 0, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: slideIn 0.8s ease-out backwards;
+        }
+
+        .module-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .module-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 50px rgba(255, 184, 0, 0.3);
+        }
+
+        .module-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .module-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .module-name {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-desc {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-price {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-features {
+            list-style: none;
+            margin-bottom: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .module-features li {
+            padding: 8px 0;
+            font-size: 0.9rem;
+        }
+
+        .module-features li::before {
+            content: '✓ ';
+            color: var(--green);
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        /* CTA BUTTON */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+            color: var(--black);
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-family: 'Unbounded', sans-serif;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 184, 0, 0.5);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button-secondary {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+
+        /* TESTIMONIALS */
+        .testimonials-section {
+            padding: 100px 20px;
+            background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 100%);
+        }
+
+        .testimonials-slider {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 184, 0, 0.05);
+            border: 2px solid rgba(255, 184, 0, 0.2);
+            border-radius: 20px;
+            padding: 35px;
+            animation: slideIn 0.8s ease-out backwards;
+        }
+
+        .testimonial-text {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 3px;
+        }
+
+        .author-info p {
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        .testimonial-result {
+            display: inline-block;
+            background: var(--green);
+            color: var(--black);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: 700;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* PRICING PACKS */
+        .pricing-section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .pricing-card {
+            background: var(--black-light);
+            border: 2px solid rgba(255, 184, 0, 0.2);
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.4s;
+            animation: slideIn 0.8s ease-out backwards;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 20px 60px rgba(255, 184, 0, 0.3);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gold);
+            color: var(--black);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+
+        .pricing-name {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .pricing-price {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 30px;
+        }
+
+        .pricing-price small {
+            font-size: 1rem;
+            color: var(--gray);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .pricing-features li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 184, 0, 0.1);
+        }
+
+        .pricing-features li::before {
+            content: '✓ ';
+            color: var(--green);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* COUNTDOWN TIMER */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--red), #FF6B35);
+            padding: 60px 20px;
+            text-align: center;
+            margin: 100px 0;
+        }
+
+        .countdown-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .timer-unit {
+            background: var(--black);
+            padding: 20px 30px;
+            border-radius: 15px;
+            min-width: 120px;
+        }
+
+        .timer-number {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--gold);
+        }
+
+        .timer-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            margin-top: 5px;
+        }
+
+        .places-left {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .places-number {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--black);
+            padding: 10px 25px;
+            border-radius: 10px;
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+        }
+
+        /* FOOTER */
+        .footer {
+            background: var(--black-light);
+            padding: 60px 20px 30px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-tagline {
+            color: var(--gray);
+            margin-bottom: 40px;
+        }
+
+        .footer-cta {
+            margin: 40px 0;
+        }
+
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .footer-contact a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .footer-contact a:hover {
+            color: var(--green);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .results-comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .modules-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* ANIMATION DELAYS */
+        .module-card:nth-child(1) { animation-delay: 0.1s; }
+        .module-card:nth-child(2) { animation-delay: 0.2s; }
+        .module-card:nth-child(3) { animation-delay: 0.3s; }
+        .module-card:nth-child(4) { animation-delay: 0.4s; }
+        .module-card:nth-child(5) { animation-delay: 0.5s; }
+        .module-card:nth-child(6) { animation-delay: 0.6s; }
+
+        .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { animation-delay: 0.3s; }
+        .testimonial-card:nth-child(3) { animation-delay: 0.5s; }
+
+        .pricing-card:nth-child(1) { animation-delay: 0.2s; }
+        .pricing-card:nth-child(2) { animation-delay: 0.4s; }
+        .pricing-card:nth-child(3) { animation-delay: 0.6s; }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav class="navbar">
-    <div class="container">
-      <div class="nav-brand">
-        <span class="logo">∞</span>
-        <span class="brand-name">DIGIYLYFE</span>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#modules">Modules</a></li>
-        <li><a href="#pricing">Tarifs</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="pioneer.html" class="btn-pioneer">🎁 Offre Pionniers</a></li>
 
-        <!-- ✅ Bouton de commande / paiement (CORRIGÉ) -->
-        <li>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-primary"
-            data-plan="NAV_GLOBAL"
-            data-module="multi"
-            data-origin-button="nav-commande"
-          >
-            Commander & payer
-          </a>
-        </li>
-      </ul>
+    <!-- URGENCE BANNER -->
+    <div class="urgence-banner">
+        <span>🔥 OFFRE PIONNIERS : Places limitées à 87 • Prix bloqué À VIE • AGIS MAINTENANT ! 🔥</span>
     </div>
-  </nav>
 
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <h1 class="hero-title">
-          L'écosystème digital<br>
-          <span class="gradient-text">0% commission</span><br>
-          pour ton business
-        </h1>
-        <p class="hero-subtitle">
-          VTC • Location • Restaurant • Marketplace • Paiement<br>
-          Garde 100% de tes revenus. Scale sans limites.
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">🦅 L'AIGLE QUI SURVOLE TOUTES LES APPS</div>
+            <h1>Garde 100% de tes revenus.<br/>Libère-toi des commissions.</h1>
+            <p class="hero-subtitle">VTC • Location • Restaurant • Marketplace • Jobs<br/>Un seul écosystème. 0% commission. ∞ possibilités.</p>
+
+            <!-- CALCULATEUR LIVE -->
+            <div class="live-calculator">
+                <h2 class="calculator-title">💰 Combien tu perds MAINTENANT ?</h2>
+                <div class="calculator-input">
+                    <div class="input-group">
+                        <label>Ton chiffre d'affaires mensuel</label>
+                        <input type="number" id="revenue" placeholder="200000" value="200000">
+                    </div>
+                    <div class="input-group">
+                        <label>Ta plateforme actuelle</label>
+                        <select id="platform">
+                            <option value="25">Uber / Yango (25%)</option>
+                            <option value="20">Jumia (20%)</option>
+                            <option value="15">Booking.com (15%)</option>
+                            <option value="18">Airbnb (18%)</option>
+                            <option value="30">Glovo (30%)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="results-comparison">
+                    <div class="result-card uber">
+                        <div class="result-label">CE QUE TU PERDS MAINTENANT</div>
+                        <div class="result-amount" id="loss">-50,000 F</div>
+                        <small>Volé par les plateformes</small>
+                    </div>
+                    <div class="result-card digiy">
+                        <div class="result-label">AVEC DIGIY (0% COMMISSION)</div>
+                        <div class="result-amount" id="digiy-cost">-9,900 F</div>
+                        <small>Prix fixe mensuel</small>
+                    </div>
+                </div>
+
+                <div class="result-economy">
+                    <div>TU ÉCONOMISES</div>
+                    <div class="big-number" id="economy">+40,100 F</div>
+                    <div>CHAQUE MOIS AVEC DIGIY ! 🚀</div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">
+                        🔥 JE VEUX ÉCONOMISER ÇA MAINTENANT
+                    </a>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">
+                    🚀 COMMANDER MON PACK
+                </a>
+                <a href="https://wa.me/221771342889" class="cta-button cta-button-secondary">
+                    💬 PARLER À UN EXPERT
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials-section">
+        <h2 class="section-title">🗣️ Ils ont fait le choix de la liberté</h2>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Avant avec Uber je perdais 60,000 F par mois. Maintenant avec DIGIY je garde TOUT. Ma famille mange mieux !"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">I</div>
+                    <div class="author-info">
+                        <h4>Ibrahim D.</h4>
+                        <p>Chauffeur VTC • Dakar</p>
+                    </div>
+                </div>
+                <span class="testimonial-result">+52,000 F/mois économisés</span>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Booking me prenait 15% sur chaque réservation. Avec DIGIY LOC, je paie 9,900 F fixe et je garde mes 100%. C'est ça la souveraineté !"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">A</div>
+                    <div class="author-info">
+                        <h4>Aminata S.</h4>
+                        <p>Gérante villa • Saly</p>
+                    </div>
+                </div>
+                <span class="testimonial-result">+78,000 F/mois économisés</span>
+            </div>
+
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Mon restaurant avait 3 tableaux différents avec 3 commissions différentes. DIGIY a tout centralisé. Une seule plateforme, 0% commission. Simple et puissant."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">M</div>
+                    <div class="author-info">
+                        <h4>Mamadou B.</h4>
+                        <p>Restaurateur • Thiès</p>
+                    </div>
+                </div>
+                <span class="testimonial-result">+95,000 F/mois économisés</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODULES -->
+    <section class="modules-section">
+        <h2 class="section-title">🎯 Choisis tes modules. Paye 1 fois. Garde tout.</h2>
+        <div class="modules-grid">
+            
+            <div class="module-card">
+                <span class="module-icon">🚗</span>
+                <h3 class="module-name">DIGIY DRIVER</h3>
+                <p class="module-desc">VTC sans intermédiaire</p>
+                <div class="module-price">9,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Gestion courses complète</li>
+                    <li>GPS temps réel</li>
+                    <li>0% commission vs Uber 25%</li>
+                    <li>Paiement direct</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <div class="module-card">
+                <span class="module-icon">🏠</span>
+                <h3 class="module-name">DIGIY LOC</h3>
+                <p class="module-desc">Location directe propriétaire</p>
+                <div class="module-price">9,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Calendrier disponibilités</li>
+                    <li>Réservations en ligne</li>
+                    <li>0% commission vs Booking 15%</li>
+                    <li>Paiements sécurisés</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <div class="module-card">
+                <span class="module-icon">🍽️</span>
+                <h3 class="module-name">DIGIY RESTO PRO</h3>
+                <p class="module-desc">Gestion restaurant complète</p>
+                <div class="module-price">9,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Commandes multi-zones</li>
+                    <li>Kitchen Display System</li>
+                    <li>Caisse intégrée</li>
+                    <li>Menu QR code</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <div class="module-card">
+                <span class="module-icon">🛒</span>
+                <h3 class="module-name">DIGIY MARKET</h3>
+                <p class="module-desc">Marketplace locale</p>
+                <div class="module-price">12,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Boutique en ligne</li>
+                    <li>Paiement mobile intégré</li>
+                    <li>0% commission vs Jumia 20%</li>
+                    <li>Gestion stock</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <div class="module-card">
+                <span class="module-icon">💼</span>
+                <h3 class="module-name">DIGIY JOBS</h3>
+                <p class="module-desc">Emploi & recrutement</p>
+                <div class="module-price">7,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Offres illimitées</li>
+                    <li>CV candidats qualifiés</li>
+                    <li>Tri automatique IA</li>
+                    <li>Entretiens vidéo</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <div class="module-card">
+                <span class="module-icon">🏗️</span>
+                <h3 class="module-name">DIGIY BUILD</h3>
+                <p class="module-desc">Services construction</p>
+                <div class="module-price">9,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Profil pro artisan</li>
+                    <li>Devis automatiques</li>
+                    <li>Planning chantiers</li>
+                    <li>Galerie réalisations</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PRICING PACKS -->
+    <section class="pricing-section">
+        <h2 class="section-title">💎 Choisis ton pack. Scale sans limites.</h2>
+        <div class="pricing-grid">
+            
+            <div class="pricing-card">
+                <h3 class="pricing-name">STARTER</h3>
+                <div class="pricing-price">19,900 F<small>/mois</small></div>
+                <ul class="pricing-features">
+                    <li>2 modules au choix</li>
+                    <li>Support standard</li>
+                    <li>Formation en ligne</li>
+                    <li>Mises à jour incluses</li>
+                    <li>0% commission sur tout</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">COMMENCER</a>
+            </div>
+
+            <div class="pricing-card featured">
+                <div class="pricing-badge">⭐ POPULAIRE</div>
+                <h3 class="pricing-name">PRO</h3>
+                <div class="pricing-price">29,900 F<small>/mois</small></div>
+                <ul class="pricing-features">
+                    <li>4 modules au choix</li>
+                    <li>Support prioritaire</li>
+                    <li>Branding personnalisé</li>
+                    <li>Formation dédiée</li>
+                    <li>Analytics avancés</li>
+                    <li>0% commission sur tout</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR PRO</a>
+            </div>
+
+            <div class="pricing-card">
+                <h3 class="pricing-name">BUSINESS</h3>
+                <div class="pricing-price">49,900 F<small>/mois</small></div>
+                <ul class="pricing-features">
+                    <li>TOUS les 9 modules</li>
+                    <li>Support 24/7 dédié</li>
+                    <li>White-label complet</li>
+                    <li>API access illimité</li>
+                    <li>Formation équipe</li>
+                    <li>Technico-commercial dédié</li>
+                    <li>0% commission sur tout</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR BUSINESS</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- COUNTDOWN URGENCE -->
+    <section class="countdown-section">
+        <h2 class="countdown-title">🔥 OFFRE PIONNIERS : Prix bloqué À VIE</h2>
+        <p style="font-size: 1.3rem; margin-bottom: 30px;">
+            Les 100 premiers clients obtiennent le Pack BUSINESS à <strong>29,900 F/mois</strong> au lieu de 49,900 F<br/>
+            <strong>Économie : 240,000 F/an • Prix garanti À VIE</strong>
         </p>
-        <div class="hero-cta">
-          <!-- ✅ Hero = direct vers paiement (CORRIGÉ) -->
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-hero-primary"
-            data-plan="UNIVERSAL"
-            data-module="multi"
-            data-origin-button="hero-cta"
-          >
-            🛒 Commander & payer maintenant
-          </a>
-          <a href="#modules" class="btn-hero-secondary">
-            Découvrir les modules
-          </a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat">
-            <div class="stat-number">0%</div>
-            <div class="stat-label">Commission</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">9</div>
-            <div class="stat-label">Modules</div>
-          </div>
-          <div class="stat">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">Possibilités</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Problème Section -->
-  <section class="problem">
-    <div class="container">
-      <h2 class="section-title">Le problème avec les plateformes actuelles</h2>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <div class="problem-icon">😤</div>
-          <h3>Commissions exorbitantes</h3>
-          <p>Uber prend 25%. Booking 15%. Jumia 20%.</p>
-          <div class="problem-stat">-50,000 F/mois perdus</div>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">📊</div>
-          <h3>Tes données leur appartiennent</h3>
-          <p>Tes clients = leurs clients. Tu n'as aucun contrôle.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-icon">🔒</div>
-          <h3>Enfermé dans leur système</h3>
-          <p>Impossible de migrer. Dépendance totale.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Solution Section -->
-  <section class="solution">
-    <div class="container">
-      <h2 class="section-title">La solution DIGIYLYFE</h2>
-      <div class="solution-grid">
-        <div class="solution-card">
-          <div class="solution-icon">💎</div>
-          <h3>0% Commission</h3>
-          <p>Prix fixe mensuel. Garde 100% de tes revenus.</p>
-          <div class="solution-example">
-            Sur 200,000 F revenus :<br>
-            <span class="old-price">Uber : -50,000 F</span><br>
-            <span class="new-price">DIGIY : -9,900 F</span><br>
-            <strong class="save">Économie : +40,100 F/mois !</strong>
-          </div>
-        </div>
-        <div class="solution-card">
-          <div class="solution-icon">🏆</div>
-          <h3>Tes données = Ton business</h3>
-          <p>Export quand tu veux. Ownership complet.</p>
-        </div>
-        <div class="solution-card">
-          <div class="solution-icon">🚀</div>
-          <h3>Scale sans limites</h3>
-          <p>Même prix que tu fasses 100K ou 10M F/mois.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Modules Section -->
-  <section id="modules" class="modules">
-    <div class="container">
-      <h2 class="section-title">9 modules pour faire grandir ton business</h2>
-      <p class="section-subtitle">Choisis ce dont tu as besoin. Tu confirmeras ton pack sur la page de paiement.</p>
-
-      <div class="modules-grid">
-        <!-- DRIVER -->
-        <div class="module-card">
-          <div class="module-icon">🚗</div>
-          <h3 class="module-name">DIGIY DRIVER</h3>
-          <p class="module-desc">VTC 0% commission</p>
-          <div class="module-price">9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Gestion courses complète</li>
-            <li>✅ GPS temps réel</li>
-            <li>✅ Paiement mobile intégré</li>
-            <li>✅ 0% commission (vs Uber 25%)</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="driver"
-            data-origin-button="module-driver"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-     <!-- BASIC -->
-<div class="pricing-card">
-  <h3 class="pricing-name">BASIC</h3>
-  <div class="pricing-price">9,900 F<span>/mois</span></div>
-  <ul class="pricing-features">
-    <li>✅ 1 module au choix</li>
-    <li>✅ Mise en route rapide</li>
-    <li>✅ Support WhatsApp</li>
-    <li>✅ 0% commission</li>
-  </ul>
-
-  <!-- 🔗 vers page paiement GitHub -->
-  <a
-    href="https://beauville.github.io/commencer-a-payer/"
-    class="btn-pricing"
-    data-plan="BASIC_9900"
-    data-module="one"
-    data-origin-button="pricing-basic"
-  >
-    Commencer à 9,900 F
-  </a>
-</div>
         
-
-        <!-- LOC -->
-        <div class="module-card">
-          <div class="module-icon">🏠</div>
-          <h3 class="module-name">DIGIY LOC</h3>
-          <p class="module-desc">Location courte durée</p>
-          <div class="module-price">À partir de 9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Calendrier disponibilités</li>
-            <li>✅ Réservations en ligne</li>
-            <li>✅ Paiements sécurisés</li>
-            <li>✅ 0% commission (vs Booking 15%)</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="loc"
-            data-origin-button="module-loc"
-          >
-            Choisir ce module →
-          </a>
-          <a href="#paliers" class="btn-module small-link">Voir les paliers LOC ↓</a>
+        <div class="places-left">
+            Il reste seulement <span class="places-number" id="placesLeft">87</span> places !
         </div>
 
-        <!-- RÉSA -->
-        <div class="module-card">
-          <div class="module-icon">🍽️</div>
-          <h3 class="module-name">DIGIY RÉSA</h3>
-          <p class="module-desc">Réservations restaurant</p>
-          <div class="module-price">9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Planning tables temps réel</li>
-            <li>✅ Confirmations auto SMS</li>
-            <li>✅ Liste d'attente smart</li>
-            <li>✅ +30% taux remplissage</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="resa"
-            data-origin-button="module-resa"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-
-        <!-- RESTO PRO -->
-        <div class="module-card featured">
-          <div class="featured-badge">⭐ PRO</div>
-          <div class="module-icon">🍴</div>
-          <h3 class="module-name">DIGIY RESTO PRO</h3>
-          <p class="module-desc">Gestion restaurant complète</p>
-          <div class="module-price">À partir de 9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Gestion commandes multi-zones</li>
-            <li>✅ Kitchen Display System</li>
-            <li>✅ Caisse intégrée</li>
-            <li>✅ Menu QR code</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="resto_pro"
-            data-origin-button="module-resto-pro"
-          >
-            Choisir ce module →
-          </a>
-          <a href="#paliers" class="btn-module small-link">Voir les paliers RESTO PRO ↓</a>
-        </div>
-
-        <!-- POS -->
-        <div class="module-card">
-          <div class="module-icon">💳</div>
-          <h3 class="module-name">DIGIY POS</h3>
-          <p class="module-desc">Point de vente moderne</p>
-          <div class="module-price">9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Caisse tactile rapide</li>
-            <li>✅ Gestion stock temps réel</li>
-            <li>✅ Paiements multi-modes</li>
-            <li>✅ Rapports quotidiens</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="pos"
-            data-origin-button="module-pos"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-
-        <!-- BUILD -->
-        <div class="module-card">
-          <div class="module-icon">🏗️</div>
-          <h3 class="module-name">DIGIY BUILD</h3>
-          <p class="module-desc">Services construction</p>
-          <div class="module-price">9,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Profil pro artisan</li>
-            <li>✅ Devis automatiques</li>
-            <li>✅ Planning chantiers</li>
-            <li>✅ Galerie réalisations</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="build"
-            data-origin-button="module-build"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-
-        <!-- MARKET -->
-        <div class="module-card">
-          <div class="module-icon">🛒</div>
-          <h3 class="module-name">DIGIY MARKET</h3>
-          <p class="module-desc">Marketplace e-commerce</p>
-          <div class="module-price">12,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Boutique en ligne</li>
-            <li>✅ Paiement mobile intégré</li>
-            <li>✅ Gestion stock</li>
-            <li>✅ 0% commission (vs Jumia 20%)</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="market"
-            data-origin-button="module-market"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-
-        <!-- PAY -->
-        <div class="module-card">
-          <div class="module-icon">💰</div>
-          <h3 class="module-name">DIGIY PAY</h3>
-          <p class="module-desc">Portefeuille mobile</p>
-          <div class="module-price">4,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Wallet digital</li>
-            <li>✅ Transferts instantanés</li>
-            <li>✅ QR Code paiement</li>
-            <li>✅ Multi-devises</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="pay"
-            data-origin-button="module-pay"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-
-        <!-- JOBS -->
-        <div class="module-card">
-          <div class="module-icon">💼</div>
-          <h3 class="module-name">DIGIY JOBS</h3>
-          <p class="module-desc">Emploi & recrutement</p>
-          <div class="module-price">7,900 F<span>/mois</span></div>
-          <ul class="module-features">
-            <li>✅ Offres emploi illimitées</li>
-            <li>✅ CV candidats qualifiés</li>
-            <li>✅ Tri automatique IA</li>
-            <li>✅ Entretiens vidéo</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-module"
-            data-plan="MODULE_ONLY"
-            data-module="jobs"
-            data-origin-button="module-jobs"
-          >
-            Choisir ce module →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- 🧱 Tarifs détaillés DIGIY LOC & RESTO PRO (paliers) -->
-  <section class="tiers-section" id="paliers">
-    <div class="container">
-      <h2 class="section-title">Tarifs DIGIY LOC & DIGIY RESTO PRO</h2>
-      <p class="section-subtitle">
-        Forfaits mensuels par paliers. Tu payes selon la taille de ton activité, jamais en pourcentage sur ton chiffre.
-      </p>
-
-      <div class="tiers-grid">
-        <!-- LOC -->
-        <article class="tier-card">
-          <div class="tier-header">
-            <div class="tier-icon">🏠</div>
-            <div class="tier-title-block">
-              <h3>DIGIY LOC</h3>
-              <p>Location courte durée • 0% commission</p>
+        <div class="countdown-timer">
+            <div class="timer-unit">
+                <div class="timer-number" id="days">00</div>
+                <div class="timer-label">Jours</div>
             </div>
-            <div class="tier-badge">Par nombre de logements</div>
-          </div>
-          <div class="tier-body">
-            <p>Tu payes selon le nombre de biens gérés. DIGIY ne prend jamais de commission sur tes réservations.</p>
-            <div class="tier-table">
-              <div class="tier-row">
-                <div class="tier-label">1 à 5 logements</div>
-                <div class="tier-price">9 900 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">6 à 9 logements</div>
-                <div class="tier-price">15 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">10 à 20 logements</div>
-                <div class="tier-price">25 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">21 à 30 logements</div>
-                <div class="tier-price">30 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">Plus de 30 logements</div>
-                <div class="tier-price">50 000 F<span>/mois</span></div>
-              </div>
+            <div class="timer-unit">
+                <div class="timer-number" id="hours">00</div>
+                <div class="timer-label">Heures</div>
             </div>
-            <p class="tier-hint">
-              <strong>0% commission :</strong> que tu encaisses 200 000 F ou 10 000 000 F, DIGIY ne touche jamais à tes loyers. Tu payes uniquement ton forfait.
-            </p>
-          </div>
-        </article>
-
-        <!-- RESTO PRO -->
-        <article class="tier-card">
-          <div class="tier-header">
-            <div class="tier-icon">🍽️</div>
-            <div class="tier-title-block">
-              <h3>DIGIY RESTO PRO</h3>
-              <p>Restaurant & réservations • 0% commission</p>
+            <div class="timer-unit">
+                <div class="timer-number" id="minutes">00</div>
+                <div class="timer-label">Minutes</div>
             </div>
-            <div class="tier-badge">Par taille de restaurant</div>
-          </div>
-          <div class="tier-body">
-            <p>Le tarif dépend de la taille de ton restaurant (tables / zones). Objectif : remplir tes tables, pas prendre sur ta marge.</p>
-            <div class="tier-table">
-              <div class="tier-row">
-                <div class="tier-label">Petit resto (1 à 5 tables / 1 zone)</div>
-                <div class="tier-price">9 900 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">Resto moyen (6 à 9 tables)</div>
-                <div class="tier-price">15 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">Grand resto (10 à 20 tables)</div>
-                <div class="tier-price">25 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">Très grand resto (21 à 30 tables)</div>
-                <div class="tier-price">30 000 F<span>/mois</span></div>
-              </div>
-              <div class="tier-row">
-                <div class="tier-label">Chaîne / hôtel (+ de 30 tables)</div>
-                <div class="tier-price">50 000 F<span>/mois</span></div>
-              </div>
+            <div class="timer-unit">
+                <div class="timer-number" id="seconds">00</div>
+                <div class="timer-label">Secondes</div>
             </div>
-            <p class="tier-hint">
-              <strong>Remplissage avant commission :</strong> DIGIY t’aide à remplir, toi tu gardes 100% des additions. Le forfait est fixe, connu, maîtrisé.
-            </p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- Pricing Section -->
-  <section id="pricing" class="pricing">
-    <div class="container">
-      <h2 class="section-title">Choisis ton plan</h2>
-      <p class="section-subtitle">Prix fixes. Pas de surprises. Pas de commission cachée.</p>
-
-      <div class="pricing-grid">
-        <!-- STARTER -->
-        <div class="pricing-card">
-          <h3 class="pricing-name">STARTER</h3>
-          <div class="pricing-price">19,900 F<span>/mois</span></div>
-          <ul class="pricing-features">
-            <li>✅ 2 modules au choix</li>
-            <li>✅ Support standard</li>
-            <li>✅ Formation en ligne</li>
-            <li>✅ Mises à jour incluses</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-pricing"
-            data-plan="STARTER_19900"
-            data-module="multi"
-            data-origin-button="pricing-starter"
-          >
-            Commencer
-          </a>
         </div>
 
-        <!-- PRO -->
-        <div class="pricing-card featured">
-          <div class="popular-badge">⭐ POPULAIRE</div>
-          <h3 class="pricing-name">PRO</h3>
-          <div class="pricing-price">29,900 F<span>/mois</span></div>
-          <ul class="pricing-features">
-            <li>✅ 4 modules au choix</li>
-            <li>✅ Support prioritaire</li>
-            <li>✅ Branding personnalisé</li>
-            <li>✅ Formation dédiée</li>
-            <li>✅ Analytics avancés</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-pricing primary"
-            data-plan="PRO_29900"
-            data-module="multi"
-            data-origin-button="pricing-pro"
-          >
-            Choisir PRO
-          </a>
+        <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button" style="background: var(--black); color: var(--gold);">
+            🎁 RÉSERVER MA PLACE MAINTENANT
+        </a>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-logo">∞ DIGIYLYFE</div>
+        <p class="footer-tagline">L'Afrique enracinée, connectée au monde<br/>0% commission • ∞ possibilités</p>
+        
+        <div class="footer-cta">
+            <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">
+                🚀 COMMENCER MAINTENANT
+            </a>
         </div>
 
-        <!-- BUSINESS -->
-        <div class="pricing-card">
-          <h3 class="pricing-name">BUSINESS</h3>
-          <div class="pricing-price">49,900 F<span>/mois</span></div>
-          <ul class="pricing-features">
-            <li>✅ TOUS les 9 modules</li>
-            <li>✅ Support 24/7 dédié</li>
-            <li>✅ White-label complet</li>
-            <li>✅ API access illimité</li>
-            <li>✅ Formation équipe</li>
-            <li>✅ Technico-commercial dédié</li>
-          </ul>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-pricing"
-            data-plan="BUSINESS_49900"
-            data-module="multi"
-            data-origin-button="pricing-business"
-          >
-            Choisir BUSINESS
-          </a>
-        </div>
-      </div>
-
-      <!-- Pioneer Offer Banner -->
-      <div class="pioneer-banner">
-        <div class="pioneer-content">
-          <div class="pioneer-badge">🎁 OFFRE PIONNIERS</div>
-          <h3>100 premiers clients : Plan BUSINESS à 29,900 F/mois À VIE</h3>
-          <p>Au lieu de 49,900 F/mois. Économie : 240,000 F/an. Prix garanti à vie.</p>
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-pioneer-cta"
-            data-plan="BUSINESS_PIONNIER_29900"
-            data-module="multi"
-            data-origin-button="pioneer-banner"
-          >
-            Réserver ma place →
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section class="cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2>Prêt à garder 100% de tes revenus ?</h2>
-        <p>Rejoins les 100 premiers et bénéficie du prix pionnier à vie</p>
-        <div class="cta-buttons">
-          <a
-            href="https://beauville.github.io/commencer-a-payer/"
-            class="btn-cta-primary"
-            data-plan="CTA_GLOBAL"
-            data-module="multi"
-            data-origin-button="cta-bottom"
-          >
-            🎁 Commander mon plan
-          </a>
-          <a href="https://wa.me/221771342889" class="btn-cta-secondary">💬 Parler à un expert</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer" id="contact">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-brand">
-            <span class="logo">∞</span>
-            <span class="brand-name">DIGIYLYFE</span>
-          </div>
-          <p>L'écosystème digital africain<br>0% commission • ∞ possibilités</p>
+        <div class="footer-contact">
+            <a href="mailto:DIGIYLYFE@GMAIL.COM">📧 DIGIYLYFE@GMAIL.COM</a>
+            <a href="https://wa.me/221771342889">📱 +221 77 134 28 89</a>
+            <a href="https://digiylyfe.com">🌐 digiylyfe.com</a>
         </div>
 
-        <div class="footer-col">
-          <h4>Modules</h4>
-          <ul>
-            <li><a href="https://beauville.github.io/digiy-chauffeur/" target="_blank" rel="noopener">DIGIY DRIVER (exemple)</a></li>
-            <li><a href="https://beauville.github.io/portail-inscription/" target="_blank" rel="noopener">DIGIY LOC (exemple)</a></li>
-            <li><a href="https://beauville.github.io/portail-inscription/" target="_blank" rel="noopener">DIGIY RESTO (exemple)</a></li>
-            <li><a href="https://beauville.github.io/portail-inscription/" target="_blank" rel="noopener">DIGIY MARKET (exemple)</a></li>
-            <li><a href="https://beauville.github.io/portail-inscription/" target="_blank" rel="noopener">DIGIY PAY (exemple)</a></li>
-          </ul>
-        </div>
+        <p style="color: var(--gray); margin-top: 40px; font-size: 0.9rem;">
+            © 2024 DIGIYLYFE. Tous droits réservés.<br/>
+            Made in Sénégal 🇸🇳 • Pour l'Afrique 🌍
+        </p>
+    </footer>
 
-        <div class="footer-col">
-          <h4>Entreprise</h4>
-          <ul>
-            <li><a href="#pricing">Tarifs</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="pioneer.html">Offre Pionniers</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li>📧 DIGIYLYFE@GMAIL.COM</li>
-            <li>📱 WhatsApp: +221 77 134 28 89</li>
-            <li>📍 Saly & Dakar, Sénégal • Sarlat, France</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <p>&copy; 2024 DIGIYLYFE. Tous droits réservés.</p>
-        <div class="footer-links">
-          <a href="#">Mentions légales</a>
-          <a href="#">Confidentialité</a>
-          <a href="#">CGU</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-
-  <!-- Supabase + tracking des clics tarifs -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
-
-    const pricingClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    async function logPricingClick(linkEl) {
-      const planCode = linkEl.getAttribute("data-plan") || "UNKNOWN_PLAN";
-      const moduleCode = linkEl.getAttribute("data-module") || "unknown";
-      const originButton = linkEl.getAttribute("data-origin-button") || null;
-      const targetUrl = linkEl.getAttribute("href") || null;
-
-      let userEmail = null;
-      try {
-        const { data: userData } = await pricingClient.auth.getUser();
-        if (userData && userData.user && userData.user.email) {
-          userEmail = userData.user.email;
+    <!-- JAVASCRIPT -->
+    <script>
+        // CALCULATEUR LIVE
+        function updateCalculator() {
+            const revenue = parseFloat(document.getElementById('revenue').value) || 0;
+            const platformFee = parseFloat(document.getElementById('platform').value);
+            
+            const loss = (revenue * platformFee / 100);
+            const digiyCost = 9900; // Prix DIGIY basic
+            const economy = loss - digiyCost;
+            
+            document.getElementById('loss').textContent = '-' + Math.round(loss).toLocaleString('fr-FR') + ' F';
+            document.getElementById('digiy-cost').textContent = '-' + digiyCost.toLocaleString('fr-FR') + ' F';
+            document.getElementById('economy').textContent = '+' + Math.round(economy).toLocaleString('fr-FR') + ' F';
         }
-      } catch (e) {
-        console.warn("Pas de session Supabase (landing public), ce n'est pas bloquant.");
-      }
 
-      try {
-        await pricingClient.from("pricing_leads").insert({
-          plan_code: planCode,
-          module: moduleCode,
-          origin_page: "tarifs-public",
-          origin_button: originButton,
-          wp_target_url: targetUrl,
-          extra: userEmail ? { email: userEmail } : null
+        document.getElementById('revenue').addEventListener('input', updateCalculator);
+        document.getElementById('platform').addEventListener('change', updateCalculator);
+        
+        // Initialize calculator
+        updateCalculator();
+
+        // COUNTDOWN TIMER
+        function updateCountdown() {
+            // Date cible : dans 7 jours
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 7);
+            
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        // Update countdown every second
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // PLACES RESTANTES (simulation)
+        function updatePlacesLeft() {
+            const places = 87 - Math.floor(Math.random() * 3); // Simulation de places qui diminuent
+            document.getElementById('placesLeft').textContent = places;
+        }
+
+        // Update places every 5 minutes
+        setInterval(updatePlacesLeft, 300000);
+        
+        // SMOOTH SCROLL
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
         });
-      } catch (err) {
-        console.error("Erreur enregistrement pricing_lead:", err);
-      }
-    }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      const pricingLinks = document.querySelectorAll("a[data-plan]");
+        // ANIMATION ON SCROLL
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-      pricingLinks.forEach((linkEl) => {
-        linkEl.addEventListener("click", async (event) => {
-          event.preventDefault();
-          const targetUrl = linkEl.getAttribute("href") || "#";
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
 
-          try {
-            await logPricingClick(linkEl);
-          } catch (e) {
-            console.error(e);
-          } finally {
-            window.location.href = targetUrl;
-          }
+        document.querySelectorAll('.module-card, .testimonial-card, .pricing-card').forEach(el => {
+            observer.observe(el);
         });
-      });
-    });
-  </script>
+    </script>
+
 </body>
 </html>
