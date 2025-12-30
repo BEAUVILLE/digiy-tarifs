@@ -44,16 +44,6 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes countUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes shine {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
         @keyframes float {
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
@@ -674,6 +664,7 @@
         .module-card:nth-child(4) { animation-delay: 0.4s; }
         .module-card:nth-child(5) { animation-delay: 0.5s; }
         .module-card:nth-child(6) { animation-delay: 0.6s; }
+        .module-card:nth-child(7) { animation-delay: 0.7s; }
 
         .testimonial-card:nth-child(1) { animation-delay: 0.1s; }
         .testimonial-card:nth-child(2) { animation-delay: 0.3s; }
@@ -797,77 +788,74 @@
         </div>
     </section>
 
-    <!-- MODULES -->
-<!-- ===================== -->
-<!-- TARIFS DIGIY FRET -->
-<!-- ===================== -->
-<section class="pricing-section" id="tarifs-fret">
-  <h2 class="section-title">🚚 DIGIY FRET — Tarifs Chauffeur & Client</h2>
+    <!-- TARIFS DIGIY FRET -->
+    <section class="pricing-section" id="tarifs-fret">
+        <h2 class="section-title">🚚 DIGIY FRET — Tarifs Chauffeur & Client</h2>
 
-  <div class="pricing-grid">
+        <div class="pricing-grid">
+            <!-- CHAUFFEUR -->
+            <div class="pricing-card">
+                <h3 class="pricing-name">FRET • CHAUFFEUR</h3>
+                <div class="pricing-price">à partir de 14,900 F<small>/mois</small></div>
+                <ul class="pricing-features">
+                    <li>0% commission</li>
+                    <li>Accès missions fret</li>
+                    <li>Wave / Orange Money</li>
+                    <li>Prix pionnier à vie (selon places)</li>
+                </ul>
 
-    <!-- CHAUFFEUR -->
-    <div class="pricing-card">
-      <h3 class="pricing-name">FRET • CHAUFFEUR</h3>
-      <div class="pricing-price">à partir de 14,900 F<small>/mois</small></div>
-      <ul class="pricing-features">
-        <li>0% commission</li>
-        <li>Accès missions fret</li>
-        <li>Wave / Orange Money</li>
-        <li>Prix pionnier à vie (selon places)</li>
-      </ul>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_LOCAL_DRIVER&price=14900&tier=local&role=driver">
+                        LOCAL • 14,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_REGIONAL_DRIVER&price=29900&tier=regional&role=driver">
+                        RÉGIONAL • 29,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_NATIONAL_DRIVER&price=49900&tier=national&role=driver">
+                        NATIONAL • 49,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_INTERNATIONAL_DRIVER&price=99900&tier=international&role=driver">
+                        INTERNATIONAL • 99,900
+                    </a>
+                </div>
+            </div>
 
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_LOCAL_DRIVER&price=14900&tier=local&role=driver">
-          LOCAL • 14,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_REGIONAL_DRIVER&price=29900&tier=regional&role=driver">
-          RÉGIONAL • 29,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_NATIONAL_DRIVER&price=49900&tier=national&role=driver">
-          NATIONAL • 49,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_INTERNATIONAL_DRIVER&price=99900&tier=international&role=driver">
-          INTERNATIONAL • 99,900
-        </a>
-      </div>
-    </div>
+            <!-- CLIENT -->
+            <div class="pricing-card featured">
+                <div class="pricing-badge">⭐ CLIENT</div>
+                <h3 class="pricing-name">FRET • CLIENT</h3>
+                <div class="pricing-price">à partir de 4,900 F<small>/mois</small></div>
+                <ul class="pricing-features">
+                    <li>0% commission</li>
+                    <li>Envois + suivi</li>
+                    <li>Wave / Orange Money</li>
+                    <li>Prix pionnier à vie (selon places)</li>
+                </ul>
 
-    <!-- CLIENT -->
-    <div class="pricing-card featured">
-      <div class="pricing-badge">⭐ CLIENT</div>
-      <h3 class="pricing-name">FRET • CLIENT</h3>
-      <div class="pricing-price">à partir de 4,900 F<small>/mois</small></div>
-      <ul class="pricing-features">
-        <li>0% commission</li>
-        <li>Envois + suivi</li>
-        <li>Wave / Orange Money</li>
-        <li>Prix pionnier à vie (selon places)</li>
-      </ul>
+                <div style="display:flex;gap:12px;flex-wrap:wrap;">
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_LOCAL_CLIENT&price=4900&tier=local&role=client">
+                        LOCAL • 4,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_REGIONAL_CLIENT&price=19900&tier=regional&role=client">
+                        RÉGIONAL • 19,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_NATIONAL_CLIENT&price=39900&tier=national&role=client">
+                        NATIONAL • 39,900
+                    </a>
+                    <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_INTERNATIONAL_CLIENT&price=69900&tier=international&role=client">
+                        INTERNATIONAL • 69,900
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_LOCAL_CLIENT&price=4900&tier=local&role=client">
-          LOCAL • 4,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_REGIONAL_CLIENT&price=19900&tier=regional&role=client">
-          RÉGIONAL • 19,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_NATIONAL_CLIENT&price=39900&tier=national&role=client">
-          NATIONAL • 39,900
-        </a>
-        <a class="cta-button" href="https://beauville.github.io/commencer-a-payer/?product=DIGIY_FRET_INTERNATIONAL_CLIENT&price=69900&tier=international&role=client">
-          INTERNATIONAL • 69,900
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-    
+    <!-- MODULES INDIVIDUELS -->
     <section class="modules-section">
         <h2 class="section-title">🎯 Choisis tes modules. Paye 1 fois. Garde tout.</h2>
         <div class="modules-grid">
             
+            <!-- DIGIY DRIVER -->
             <div class="module-card">
                 <span class="module-icon">🚗</span>
                 <h3 class="module-name">DIGIY DRIVER</h3>
@@ -882,6 +870,7 @@
                 <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
             </div>
 
+            <!-- DIGIY LOC -->
             <div class="module-card">
                 <span class="module-icon">🏠</span>
                 <h3 class="module-name">DIGIY LOC</h3>
@@ -896,11 +885,12 @@
                 <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
             </div>
 
+            <!-- DIGIY RESTO PRO - CORRIGÉ À 29,500 F -->
             <div class="module-card">
                 <span class="module-icon">🍽️</span>
                 <h3 class="module-name">DIGIY RESTO PRO</h3>
                 <p class="module-desc">Gestion restaurant complète</p>
-                <div class="module-price">9,900 F<small>/mois</small></div>
+                <div class="module-price">29,500 F<small>/mois</small></div>
                 <ul class="module-features">
                     <li>Commandes multi-zones</li>
                     <li>Kitchen Display System</li>
@@ -910,6 +900,22 @@
                 <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
             </div>
 
+            <!-- DIGIY POS PRO - NOUVEAU -->
+            <div class="module-card">
+                <span class="module-icon">🧾</span>
+                <h3 class="module-name">DIGIY POS PRO</h3>
+                <p class="module-desc">Caisse connectée 0% commission</p>
+                <div class="module-price">12,900 F<small>/mois</small></div>
+                <ul class="module-features">
+                    <li>Ventes illimitées</li>
+                    <li>Gestion stock temps réel</li>
+                    <li>0% commission vs autres 15-30%</li>
+                    <li>Cloud + Support</li>
+                </ul>
+                <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
+            </div>
+
+            <!-- DIGIY MARKET -->
             <div class="module-card">
                 <span class="module-icon">🛒</span>
                 <h3 class="module-name">DIGIY MARKET</h3>
@@ -924,6 +930,7 @@
                 <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
             </div>
 
+            <!-- DIGIY JOBS -->
             <div class="module-card">
                 <span class="module-icon">💼</span>
                 <h3 class="module-name">DIGIY JOBS</h3>
@@ -938,6 +945,7 @@
                 <a href="https://beauville.github.io/commencer-a-payer/" class="cta-button">CHOISIR CE MODULE</a>
             </div>
 
+            <!-- DIGIY BUILD -->
             <div class="module-card">
                 <span class="module-icon">🏗️</span>
                 <h3 class="module-name">DIGIY BUILD</h3>
@@ -992,7 +1000,7 @@
                 <h3 class="pricing-name">BUSINESS</h3>
                 <div class="pricing-price">49,900 F<small>/mois</small></div>
                 <ul class="pricing-features">
-                    <li>TOUS les 9 modules</li>
+                    <li>TOUS les modules</li>
                     <li>Support 24/7 dédié</li>
                     <li>White-label complet</li>
                     <li>API access illimité</li>
