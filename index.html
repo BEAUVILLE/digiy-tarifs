@@ -5,247 +5,116 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tarifs DIGIYLYFE - Tous les Modules</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh; padding:20px; color:#1e293b;
+    }
+    .container{ max-width:1200px; margin:0 auto; }
+    header{
+      text-align:center; padding:40px 20px;
+      background:rgba(255,255,255,.95);
+      border-radius:24px; margin-bottom:30px;
+      box-shadow:0 20px 60px rgba(0,0,0,.2);
+    }
+    h1{
+      font-size:48px; font-weight:900;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; margin-bottom:10px;
+    }
+    .tagline{ font-size:20px; font-weight:700; color:#64748b; margin-bottom:20px; }
+    .contact-info{
+      margin-top:20px; padding:20px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      border-radius:16px; color:#fff;
+    }
+    .contact-info h3{ font-size:24px; font-weight:900; margin-bottom:10px; }
+    .contact-details{ font-size:20px; font-weight:800; margin-bottom:15px; }
+    .pay-button{
+      display:inline-block; padding:16px 40px;
+      background:#facc15; color:#1e293b; text-decoration:none;
+      font-size:20px; font-weight:900; border-radius:12px;
+      transition:all .3s; box-shadow:0 8px 16px rgba(250,204,21,.4);
+    }
+    .pay-button:hover{
+      transform:translateY(-2px);
+      box-shadow:0 12px 24px rgba(250,204,21,.6);
+      background:#fbbf24;
     }
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
-      color: #1e293b;
+    .modules-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:24px; margin-bottom:30px;
+    }
+    .module-card{
+      background:rgba(255,255,255,.95);
+      border-radius:20px; padding:30px;
+      box-shadow:0 12px 40px rgba(0,0,0,.15);
+      transition:all .3s;
+    }
+    .module-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 20px 60px rgba(0,0,0,.25);
+    }
+    .module-icon{ font-size:48px; margin-bottom:15px; }
+    .module-title{ font-size:28px; font-weight:900; color:#1e293b; margin-bottom:10px; }
+    .module-description{ font-size:15px; font-weight:600; color:#64748b; line-height:1.6; margin-bottom:20px; }
+
+    .price-badge{
+      display:inline-block; padding:12px 24px;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      color:#fff; font-size:24px; font-weight:900;
+      border-radius:12px; margin-bottom:15px;
     }
 
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
+    .tiers-container{
+      background:#f1f5f9; border-radius:12px;
+      padding:20px; margin-top:15px;
+    }
+    .tiers-title{
+      font-size:16px; font-weight:800; color:#334155;
+      margin-bottom:12px; text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+    .tier{
+      background:#fff; padding:12px 16px; border-radius:8px;
+      margin-bottom:8px; display:flex; justify-content:space-between; align-items:center;
+      border-left:4px solid #667eea;
+    }
+    .tier:last-child{ margin-bottom:0; }
+    .tier-name{ font-size:14px; font-weight:700; color:#334155; }
+    .tier-price{ font-size:16px; font-weight:900; color:#667eea; }
+
+    .features{ list-style:none; margin-top:15px; }
+    .features li{
+      font-size:14px; font-weight:600; color:#475569;
+      padding:8px 0 8px 25px; position:relative;
+    }
+    .features li::before{
+      content:"✓"; position:absolute; left:0;
+      color:#10b981; font-weight:900; font-size:16px;
+    }
+    .commission-badge{
+      display:inline-block; padding:8px 16px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      color:#fff; font-size:14px; font-weight:800;
+      border-radius:20px; margin-top:10px;
+    }
+    .section-title{
+      font-size:36px; font-weight:900; color:#fff;
+      text-align:center; margin:40px 0 30px 0;
+      text-shadow:0 4px 8px rgba(0,0,0,.3);
     }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 24px;
-      margin-bottom: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
-
-    h1 {
-      font-size: 48px;
-      font-weight: 900;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 10px;
-    }
-
-    .tagline {
-      font-size: 20px;
-      font-weight: 700;
-      color: #64748b;
-      margin-bottom: 20px;
-    }
-
-    .contact-info {
-      margin-top: 20px;
-      padding: 20px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      border-radius: 16px;
-      color: white;
-    }
-
-    .contact-info h3 {
-      font-size: 24px;
-      font-weight: 900;
-      margin-bottom: 10px;
-    }
-
-    .contact-details {
-      font-size: 20px;
-      font-weight: 800;
-      margin-bottom: 15px;
-    }
-
-    .pay-button {
-      display: inline-block;
-      padding: 16px 40px;
-      background: #facc15;
-      color: #1e293b;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: 900;
-      border-radius: 12px;
-      transition: all 0.3s;
-      box-shadow: 0 8px 16px rgba(250, 204, 21, 0.4);
-    }
-
-    .pay-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 12px 24px rgba(250, 204, 21, 0.6);
-      background: #fbbf24;
-    }
-
-    .modules-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 24px;
-      margin-bottom: 30px;
-    }
-
-    .module-card {
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
-      transition: all 0.3s;
-    }
-
-    .module-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-    }
-
-    .module-icon {
-      font-size: 48px;
-      margin-bottom: 15px;
-    }
-
-    .module-title {
-      font-size: 28px;
-      font-weight: 900;
-      color: #1e293b;
-      margin-bottom: 10px;
-    }
-
-    .module-description {
-      font-size: 15px;
-      font-weight: 600;
-      color: #64748b;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .price-badge {
-      display: inline-block;
-      padding: 12px 24px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      font-size: 24px;
-      font-weight: 900;
-      border-radius: 12px;
-      margin-bottom: 15px;
-    }
-
-    .tiers-container {
-      background: #f1f5f9;
-      border-radius: 12px;
-      padding: 20px;
-      margin-top: 15px;
-    }
-
-    .tiers-title {
-      font-size: 16px;
-      font-weight: 800;
-      color: #334155;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .tier {
-      background: white;
-      padding: 12px 16px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-left: 4px solid #667eea;
-    }
-
-    .tier:last-child {
-      margin-bottom: 0;
-    }
-
-    .tier-name {
-      font-size: 14px;
-      font-weight: 700;
-      color: #334155;
-    }
-
-    .tier-price {
-      font-size: 16px;
-      font-weight: 900;
-      color: #667eea;
-    }
-
-    .features {
-      list-style: none;
-      margin-top: 15px;
-    }
-
-    .features li {
-      font-size: 14px;
-      font-weight: 600;
-      color: #475569;
-      padding: 8px 0;
-      padding-left: 25px;
-      position: relative;
-    }
-
-    .features li::before {
-      content: "✓";
-      position: absolute;
-      left: 0;
-      color: #10b981;
-      font-weight: 900;
-      font-size: 16px;
-    }
-
-    .commission-badge {
-      display: inline-block;
-      padding: 8px 16px;
-      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
-      color: white;
-      font-size: 14px;
-      font-weight: 800;
-      border-radius: 20px;
-      margin-top: 10px;
-    }
-
-    .section-title {
-      font-size: 36px;
-      font-weight: 900;
-      color: white;
-      text-align: center;
-      margin: 40px 0 30px 0;
-      text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-
-    @media (max-width: 768px) {
-      h1 {
-        font-size: 32px;
-      }
-
-      .tagline {
-        font-size: 16px;
-      }
-
-      .modules-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .module-title {
-        font-size: 24px;
-      }
-
-      .price-badge {
-        font-size: 20px;
-      }
+    @media (max-width:768px){
+      h1{ font-size:32px; }
+      .tagline{ font-size:16px; }
+      .modules-grid{ grid-template-columns:1fr; }
+      .module-title{ font-size:24px; }
+      .price-badge{ font-size:20px; }
     }
   </style>
 </head>
@@ -254,7 +123,7 @@
     <header>
       <h1>🦅 DIGIYLYFE</h1>
       <p class="tagline">L'Afrique enracinée, connectée au monde • 0% Commission</p>
-      
+
       <div class="contact-info">
         <h3>💳 Paiement & Contact</h3>
         <div class="contact-details">
@@ -267,9 +136,10 @@
       </div>
     </header>
 
-    <div class="section-title">📦 Modules Individuels</div>
+    <div class="section-title">📦 Modules Individuels (Pro)</div>
 
     <div class="modules-grid">
+
       <!-- DIGIY DRIVER -->
       <div class="module-card">
         <div class="module-icon">🚗</div>
@@ -277,7 +147,7 @@
         <p class="module-description">
           Transport VTC • GPS temps réel • Courses instantanées • Paiement sécurisé
         </p>
-        <div class="price-badge">9,900 F/mois</div>
+        <div class="price-badge">12 900 FCFA / mois</div>
         <ul class="features">
           <li>Géolocalisation GPS en temps réel</li>
           <li>Calcul automatique de distance</li>
@@ -294,29 +164,29 @@
         <p class="module-description">
           Location courte durée • Gestion logements • Réservations • 0% commission
         </p>
-        <div class="price-badge">À partir de 9,900 F/mois</div>
-        
+        <div class="price-badge">À partir de 12 900 FCFA / mois</div>
+
         <div class="tiers-container">
           <div class="tiers-title">Par nombre de logements</div>
           <div class="tier">
             <span class="tier-name">🥉 1 à 5 logements</span>
-            <span class="tier-price">9,900 F</span>
+            <span class="tier-price">12 900 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥈 6 à 9 logements</span>
-            <span class="tier-price">15,000 F</span>
+            <span class="tier-price">25 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥇 10 à 20 logements</span>
-            <span class="tier-price">25,000 F</span>
+            <span class="tier-price">45 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">💎 21 à 30 logements</span>
-            <span class="tier-price">30,000 F</span>
+            <span class="tier-price">60 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">👑 Plus de 30 logements</span>
-            <span class="tier-price">50,000 F</span>
+            <span class="tier-price">90 000 FCFA</span>
           </div>
         </div>
         <div class="commission-badge">✅ 0% Commission</div>
@@ -329,24 +199,24 @@
         <p class="module-description">
           Gestion restaurant complète • Plan de salle • Commandes • KDS • Caisse • Offline
         </p>
-        <div class="price-badge">À partir de 9,900 F/mois</div>
-        
+        <div class="price-badge">À partir de 19 900 FCFA / mois</div>
+
         <div class="tiers-container">
           <div class="tiers-title">Par nombre de licences</div>
           <div class="tier">
             <span class="tier-name">🥉 ESSENTIEL • 2 licences (15 tables)</span>
-            <span class="tier-price">9,900 F</span>
+            <span class="tier-price">19 900 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥈 STANDARD • 4 licences (30 tables)</span>
-            <span class="tier-price">14,900 F</span>
+            <span class="tier-price">39 900 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥇 PRO • 6 licences (45 tables)</span>
-            <span class="tier-price">24,900 F</span>
+            <span class="tier-price">59 900 FCFA</span>
           </div>
         </div>
-        
+
         <ul class="features">
           <li>Plan de salle interactif</li>
           <li>Prise de commande multi-zones</li>
@@ -364,29 +234,29 @@
         <p class="module-description">
           Réservations restaurant • Planning temps réel • SMS auto • Gestion tables
         </p>
-        <div class="price-badge">À partir de 9,900 F/mois</div>
-        
+        <div class="price-badge">À partir de 12 900 FCFA / mois</div>
+
         <div class="tiers-container">
           <div class="tiers-title">Par nombre de tables</div>
           <div class="tier">
             <span class="tier-name">🥉 1 à 5 tables</span>
-            <span class="tier-price">9,900 F</span>
+            <span class="tier-price">12 900 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥈 6 à 9 tables</span>
-            <span class="tier-price">15,000 F</span>
+            <span class="tier-price">25 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥇 10 à 20 tables</span>
-            <span class="tier-price">25,000 F</span>
+            <span class="tier-price">45 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">💎 21 à 30 tables</span>
-            <span class="tier-price">30,000 F</span>
+            <span class="tier-price">60 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">👑 Plus de 30 tables</span>
-            <span class="tier-price">50,000 F</span>
+            <span class="tier-price">90 000 FCFA</span>
           </div>
         </div>
         <div class="commission-badge">✅ 0% Commission</div>
@@ -399,7 +269,7 @@
         <p class="module-description">
           Caisse enregistreuse pro • Gestion stock • Ventes • Stats • Multi-utilisateurs
         </p>
-        <div class="price-badge">12,900 F/mois</div>
+        <div class="price-badge">19 900 FCFA / mois</div>
         <ul class="features">
           <li>Caisse tactile intuitive</li>
           <li>Gestion complète du stock</li>
@@ -418,7 +288,7 @@
         <p class="module-description">
           Marketplace • Vente en ligne • Catalogue produits • Paiement mobile
         </p>
-        <div class="price-badge">12,900 F/mois</div>
+        <div class="price-badge">19 900 FCFA / mois</div>
         <ul class="features">
           <li>Boutique en ligne personnalisée</li>
           <li>Catalogue produits illimité</li>
@@ -429,7 +299,6 @@
         <div class="commission-badge">✅ 0% Commission</div>
       </div>
 
-     
       <!-- DIGIY BUILD -->
       <div class="module-card">
         <div class="module-icon">🏗️</div>
@@ -437,7 +306,7 @@
         <p class="module-description">
           Artisans & construction • Devis • Chantiers • Portfolio • Avis clients
         </p>
-        <div class="price-badge">9,900 F/mois</div>
+        <div class="price-badge">12 900 FCFA / mois</div>
         <ul class="features">
           <li>Portfolio de réalisations</li>
           <li>Système de devis</li>
@@ -447,9 +316,53 @@
         </ul>
         <div class="commission-badge">✅ 0% Commission</div>
       </div>
+
+      <!-- ✅ NOUVEAU: DIGIY EXPLORE AGENCE PARTNER -->
+      <div class="module-card">
+        <div class="module-icon">🧭</div>
+        <h2 class="module-title">DIGIY EXPLORE — AGENCE PARTNER</h2>
+        <p class="module-description">
+          Programme partenaire agences • Visibilité internationale • Leads WhatsApp • Zéro commission
+        </p>
+
+        <div class="price-badge">À partir de 30 000 FCFA / mois</div>
+
+        <div class="tiers-container">
+          <div class="tiers-title">Packs Agence (mensuel)</div>
+          <div class="tier">
+            <span class="tier-name">🟢 ESSENTIEL (listing + WhatsApp)</span>
+            <span class="tier-price">30 000 FCFA</span>
+          </div>
+          <div class="tier">
+            <span class="tier-name">🔵 PRO (mise en avant + cockpit)</span>
+            <span class="tier-price">60 000 FCFA</span>
+          </div>
+          <div class="tier">
+            <span class="tier-name">🟣 PREMIUM (marketing + priorité)</span>
+            <span class="tier-price">120 000 FCFA</span>
+          </div>
+        </div>
+
+        <div class="tiers-container">
+          <div class="tiers-title">Droit d'entrée (one-shot)</div>
+          <div class="tier">
+            <span class="tier-name">🎫 Setup & onboarding</span>
+            <span class="tier-price">150 000 FCFA</span>
+          </div>
+        </div>
+
+        <ul class="features">
+          <li>Fiche pro optimisée + photos + texte</li>
+          <li>QR Code officiel agence</li>
+          <li>Contact direct (WhatsApp/tel)</li>
+          <li>Zéro commission sur vos ventes</li>
+        </ul>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
     </div>
 
-    <!-- DIGIY FRET Section séparée -->
+    <!-- DIGIY FRET -->
     <div class="section-title">🚚 DIGIY FRET - Transport & Logistique</div>
 
     <div class="modules-grid">
@@ -459,24 +372,24 @@
         <p class="module-description">
           Transport marchandises • 4 zones géographiques • Commandes pro
         </p>
-        
+
         <div class="tiers-container">
-          <div class="tiers-title">Tarifs Chauffeur par Zone</div>
+          <div class="tiers-title">Tarifs Chauffeur par Zone (mensuel)</div>
           <div class="tier">
             <span class="tier-name">🥉 LOCAL (moins de 50km)</span>
-            <span class="tier-price">14,900 F</span>
+            <span class="tier-price">25 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥈 RÉGIONAL (50-200km)</span>
-            <span class="tier-price">29,900 F</span>
+            <span class="tier-price">60 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥇 NATIONAL (200km+)</span>
-            <span class="tier-price">49,900 F</span>
+            <span class="tier-price">120 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">👑 INTERNATIONAL (CEDEAO)</span>
-            <span class="tier-price">99,900 F</span>
+            <span class="tier-price">200 000 FCFA</span>
           </div>
         </div>
         <div class="commission-badge">✅ 0% Commission</div>
@@ -488,24 +401,24 @@
         <p class="module-description">
           Envoyer marchandises • Suivi GPS • Tarifs transparents • Paiement mobile
         </p>
-        
+
         <div class="tiers-container">
-          <div class="tiers-title">Tarifs Client par Zone</div>
+          <div class="tiers-title">Tarifs Client (mensuel) — à ajuster si tu veux du “pay-per-shipment”</div>
           <div class="tier">
             <span class="tier-name">🥉 LOCAL (moins de 50km)</span>
-            <span class="tier-price">4,900 F</span>
+            <span class="tier-price">9 900 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥈 RÉGIONAL (50-200km)</span>
-            <span class="tier-price">19,900 F</span>
+            <span class="tier-price">25 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">🥇 NATIONAL (200km+)</span>
-            <span class="tier-price">39,900 F</span>
+            <span class="tier-price">60 000 FCFA</span>
           </div>
           <div class="tier">
             <span class="tier-name">👑 INTERNATIONAL (CEDEAO)</span>
-            <span class="tier-price">69,900 F</span>
+            <span class="tier-price">120 000 FCFA</span>
           </div>
         </div>
         <div class="commission-badge">✅ 0% Commission</div>
@@ -513,8 +426,8 @@
     </div>
 
     <!-- Contact final -->
-    <header style="margin-top: 40px;">
-      <h2 style="color: #1e293b; margin-bottom: 20px;">💳 Prêt à commencer ?</h2>
+    <header style="margin-top:40px;">
+      <h2 style="color:#1e293b; margin-bottom:20px;">💳 Prêt à commencer ?</h2>
       <div class="contact-info">
         <h3>Contacte JB BEAUVILLE</h3>
         <div class="contact-details">
