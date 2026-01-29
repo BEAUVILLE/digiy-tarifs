@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarifs Officiels DIGIYLYFE — Grille V2</title>
+
+  <!-- Supabase JS v2 -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{
+      font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      min-height:100vh; padding:20px; color:#1e293b;
+    }
+    .container{max-width:1200px;margin:0 auto}
+    header{
+      text-align:center; padding:40px 20px;
+      background:rgba(255,255,255,.95);
+      border-radius:24px; margin-bottom:30px;
+      box-shadow:0 20px 60px rgba(0,0,0,.2);
+    }
+    h1{
+      font-size:48px; font-weight:900;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      background-clip:text; margin-bottom:10px;
+    }
+    .tagline{font-size:20px;font-weight:800;color:#64748b;margin-bottom:14px}
+    .subtag{font-size:14px;font-weight:700;color:#475569;opacity:.9}
+
+    .notice{
+      margin:18px auto 0;
+      max-width:980px;
+      background:#0f172a;
+      color:#fff;
+      border-radius:16px;
+      padding:16px 18px;
+      text-align:left;
+      box-shadow:0 10px 30px rgba(0,0,0,.18);
+    }
+    .notice h3{font-size:16px;font-weight:900;margin-bottom:6px;color:#facc15}
+    .notice p{font-size:13px;line-height:1.55;color:rgba(255,255,255,.88)}
+    .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+    }
+    .pill b{color:#facc15}
+
+    .contact-info{
+      margin-top:20px; padding:20px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      border-radius:16px; color:white;
+    }
+    .contact-info h3{font-size:24px;font-weight:900;margin-bottom:10px}
+    .contact-details{font-size:18px;font-weight:900;margin-bottom:14px}
+    .pay-button{
+      display:inline-block; padding:16px 40px;
+      background:#facc15; color:#1e293b; text-decoration:none;
+      font-size:18px; font-weight:900; border-radius:12px;
+      transition:all .3s; box-shadow:0 8px 16px rgba(250,204,21,.4);
+    }
+    .pay-button:hover{transform:translateY(-2px);box-shadow:0 12px 24px rgba(250,204,21,.6);background:#fbbf24}
+
+    .section-title{
+      font-size:34px; font-weight:900; color:white; text-align:center;
+      margin:40px 0 24px 0;
+      text-shadow:0 4px 8px rgba(0,0,0,.3);
+    }
+
+    .modules-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      gap:24px; margin-bottom:30px;
+    }
+    .module-card{
+      background:rgba(255,255,255,.95);
+      border-radius:20px; padding:30px;
+      box-shadow:0 12px 40px rgba(0,0,0,.15);
+      transition:all .3s;
+      position:relative;
+      overflow:hidden;
+    }
+    .module-card:hover{transform:translateY(-8px);box-shadow:0 20px 60px rgba(0,0,0,.25)}
+    .module-icon{font-size:48px;margin-bottom:15px}
+    .module-title{font-size:26px;font-weight:900;color:#1e293b;margin-bottom:10px}
+    .module-description{font-size:14px;font-weight:700;color:#64748b;line-height:1.6;margin-bottom:18px}
+
+    .price-badge{
+      display:inline-block; padding:12px 18px;
+      background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+      color:white; font-size:20px; font-weight:900;
+      border-radius:12px; margin-bottom:12px;
+    }
+
+    .tiers-container{
+      background:#f1f5f9; border-radius:12px; padding:18px; margin-top:12px;
+    }
+    .tiers-title{
+      font-size:13px; font-weight:900; color:#334155;
+      margin-bottom:10px; text-transform:uppercase; letter-spacing:.6px;
+    }
+    .tier{
+      background:white; padding:12px 14px; border-radius:10px; margin-bottom:8px;
+      display:flex; justify-content:space-between; align-items:center;
+      border-left:4px solid #667eea;
+    }
+    .tier:last-child{margin-bottom:0}
+    .tier-name{font-size:13px;font-weight:800;color:#334155}
+    .tier-price{font-size:14px;font-weight:900;color:#667eea}
+
+    .features{list-style:none;margin-top:14px}
+    .features li{
+      font-size:13px; font-weight:700; color:#475569;
+      padding:7px 0 7px 24px; position:relative;
+    }
+    .features li::before{
+      content:"✓"; position:absolute; left:0;
+      color:#10b981; font-weight:900; font-size:16px;
+    }
+    .commission-badge{
+      display:inline-block; padding:8px 14px;
+      background:linear-gradient(135deg,#10b981 0%,#059669 100%);
+      color:white; font-size:12px; font-weight:900;
+      border-radius:999px; margin-top:10px;
+    }
+
+    .deal-badge{
+      display:inline-block; padding:8px 12px;
+      background:rgba(250,204,21,.15);
+      border:1px solid rgba(250,204,21,.35);
+      color:#7c5f00;
+      font-size:12px; font-weight:900;
+      border-radius:999px; margin-top:10px;
+    }
+
+    .banner{
+      margin-top:18px;
+      background:rgba(255,255,255,.9);
+      border:2px dashed rgba(99,102,241,.35);
+      border-radius:18px;
+      padding:16px 18px;
+      box-shadow:0 10px 28px rgba(0,0,0,.12);
+    }
+    .banner h3{font-size:18px;font-weight:900;color:#1e293b;margin-bottom:6px}
+    .banner p{font-size:13px;font-weight:700;color:#475569;line-height:1.55}
+    .banner ul{margin-top:10px;padding-left:18px}
+    .banner li{margin:6px 0;font-size:13px;font-weight:800;color:#334155}
+    .banner b{color:#0f172a}
+
+    /* ✅ SUPPLÉMENTS EXPLORE */
+    .addon-wrap{
+      background:rgba(255,255,255,.95);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 18px 60px rgba(0,0,0,.18);
+      margin: 8px 0 26px;
+    }
+    .addon-top{
+      display:flex; gap:14px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      margin-bottom:12px;
+    }
+    .addon-top h2{
+      font-size:22px; font-weight:950; color:#0f172a;
+    }
+    .addon-meta{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      font-size:12px; font-weight:900; color:#334155;
+    }
+    .chip{
+      padding:8px 10px;
+      border-radius:999px;
+      background:#f1f5f9;
+      border:1px solid rgba(2,6,23,.08);
+    }
+    .chip b{color:#0f172a}
+    .addon-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+      gap:16px;
+      margin-top:12px;
+    }
+    .addon-card{
+      background:#0f172a;
+      color:#fff;
+      border-radius:18px;
+      padding:16px 16px 14px;
+      box-shadow:0 12px 36px rgba(0,0,0,.22);
+      border:1px solid rgba(255,255,255,.12);
+    }
+    .addon-card h3{font-size:16px;font-weight:950;margin-bottom:6px;color:#facc15}
+    .addon-card p{font-size:13px;line-height:1.55;color:rgba(255,255,255,.86)}
+    .addon-row{
+      display:flex; gap:10px; flex-wrap:wrap;
+      align-items:center; justify-content:space-between;
+      margin-top:12px;
+    }
+    .addon-price{
+      font-size:20px; font-weight:1000;
+      color:#22c55e;
+    }
+    .btn-addon{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:8px;
+      padding:12px 14px;
+      border-radius:12px;
+      font-weight:950;
+      text-decoration:none;
+      background:#facc15;
+      color:#0f172a;
+      border:0;
+      cursor:pointer;
+      box-shadow:0 10px 18px rgba(250,204,21,.25);
+    }
+    .btn-addon:hover{filter:brightness(.98); transform:translateY(-1px)}
+    .btn-addon.secondary{
+      background:rgba(255,255,255,.12);
+      color:#fff;
+      border:1px solid rgba(255,255,255,.18);
+      box-shadow:none;
+    }
+    .status-pill{
+      padding:8px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:950;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:#fff;
+    }
+    .status-pill.active{border-color:rgba(34,197,94,.45); color:#86efac}
+    .status-pill.paused{border-color:rgba(245,158,11,.45); color:#fde68a}
+    .status-pill.canceled{border-color:rgba(239,68,68,.45); color:#fecaca}
+    .status-pill.none{border-color:rgba(148,163,184,.35); color:#e2e8f0}
+
+    .lockbox{
+      margin-top:10px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px dashed rgba(250,204,21,.45);
+      background: rgba(250,204,21,.12);
+      color:#fff;
+      font-size:12px;
+      font-weight:900;
+      line-height:1.45;
+    }
+
+    @media(max-width:768px){
+      h1{font-size:32px}
+      .tagline{font-size:16px}
+      .modules-grid{grid-template-columns:1fr}
+      .module-title{font-size:22px}
+      .price-badge{font-size:18px}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>🦅 DIGIYLYFE</h1>
+      <p class="tagline">Grille Officielle V2 • 0% Commission • Paiement direct au Pro</p>
+      <p class="subtag">Tarifs pensés terrain Sénégal • Simples • Progressifs • Justes</p>
+
+      <div class="notice">
+        <h3>🔥 Offres Officielles DIGIY — V2</h3>
+        <p>
+          Abonnement mensuel (modules) + onboarding terrain si besoin.
+          <b>Les Suppléments EXPLORE</b> sont des <b>options payantes</b> de mise en avant vitrine (ce n’est pas un cadeau).
+        </p>
+        <div class="pill-row">
+          <div class="pill">🎁 <b>Droit d’entrée OFFERT</b> si paiement <b>annuel</b> (modules)</div>
+          <div class="pill">💎 <b>-10%</b> si <b>Multi-Modules</b> (2+ modules actifs)</div>
+          <div class="pill">✅ Toujours <b>0% commission</b></div>
+        </div>
+      </div>
+
+      <div class="contact-info">
+        <h3>💳 Paiement & Contact</h3>
+        <div class="contact-details">
+          👤 JB BEAUVILLE<br>
+          📞 +221 77 134 28 89
+        </div>
+        <a href="https://beauville.github.io/commencer-a-payer/" class="pay-button">
+          💰 COMMENCER À PAYER
+        </a>
+      </div>
+
+      <div class="banner">
+        <h3>📌 Règles simples (pas de palabres 😄)</h3>
+        <p><b>Mensuel</b> = outil actif. <b>Annuel</b> = meilleur prix + onboarding offert (modules).</p>
+        <ul>
+          <li><b>Annuel</b> : paiement 12 mois → <b>Droit d’entrée OFFERT</b></li>
+          <li><b>Multi-modules</b> : 2+ modules → <b>-10% sur mensualités</b></li>
+          <li><b>0% commission</b> : le pro garde l’argent.</li>
+        </ul>
+      </div>
+
+      <div class="notice" style="margin-top:18px">
+        <h3>🧩 Contexte Pro (pour voir Extra/Statut)</h3>
+        <p>
+          Ouvre avec :
+          <span class="pill"><b>?phone=+221...</b></span>
+          <span class="pill"><b>&slug=chez-...</b></span>
+          <span class="pill"><b>&module=LOC</b></span>
+        </p>
+      </div>
+    </header>
+
+    <div class="section-title">📦 Modules Individuels (Pro)</div>
+
+    <div class="modules-grid">
+      <!-- DRIVER -->
+      <div class="module-card">
+        <div class="module-icon">🚗</div>
+        <h2 class="module-title">DIGIY DRIVER</h2>
+        <p class="module-description">Transport VTC • GPS temps réel • Courses instantanées • Paiement sécurisé</p>
+        <div class="price-badge">12 900 FCFA / mois</div>
+        <ul class="features">
+          <li>GPS & tracking</li>
+          <li>Historique courses</li>
+          <li>Paiement Wave & OM</li>
+          <li>Stats & performance</li>
+        </ul>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- LOC -->
+      <div class="module-card">
+        <div class="module-icon">🏠</div>
+        <h2 class="module-title">DIGIY LOC</h2>
+        <p class="module-description">Location courte durée • Gestion logements • Réservations • 0% commission</p>
+        <div class="price-badge">À partir de 12 900 FCFA / mois</div>
+        <div class="tiers-container">
+          <div class="tiers-title">Par nombre de logements</div>
+          <div class="tier"><span class="tier-name">🥉 1 à 5 logements</span><span class="tier-price">12 900 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥈 6 à 9 logements</span><span class="tier-price">25 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥇 10 à 20 logements</span><span class="tier-price">45 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">💎 21 à 30 logements</span><span class="tier-price">60 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">👑 Plus de 30 logements</span><span class="tier-price">90 000 FCFA</span></div>
+        </div>
+        <div class="deal-badge">💡 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- RESTO -->
+      <div class="module-card">
+        <div class="module-icon">🍽️</div>
+        <h2 class="module-title">DIGIY RESTO PRO</h2>
+        <p class="module-description">Plan de salle • Commandes • KDS • Caisse • Offline</p>
+        <div class="price-badge">À partir de 19 900 FCFA / mois</div>
+        <div class="tiers-container">
+          <div class="tiers-title">Par nombre de licences</div>
+          <div class="tier"><span class="tier-name">🥉 ESSENTIEL • 2 licences (15 tables)</span><span class="tier-price">19 900 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥈 STANDARD • 4 licences (30 tables)</span><span class="tier-price">39 900 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥇 PRO • 6 licences (45 tables)</span><span class="tier-price">59 900 FCFA</span></div>
+        </div>
+        <div class="deal-badge">🎁 Droit d’entrée offert en annuel (modules)</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- RÉSA -->
+      <div class="module-card">
+        <div class="module-icon">📅</div>
+        <h2 class="module-title">DIGIY RÉSA</h2>
+        <p class="module-description">Réservations • Planning • Rappels auto • Gestion tables</p>
+        <div class="price-badge">À partir de 12 900 FCFA / mois</div>
+        <div class="tiers-container">
+          <div class="tiers-title">Par nombre de tables</div>
+          <div class="tier"><span class="tier-name">🥉 1 à 5 tables</span><span class="tier-price">12 900 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥈 6 à 9 tables</span><span class="tier-price">25 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥇 10 à 20 tables</span><span class="tier-price">45 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">💎 21 à 30 tables</span><span class="tier-price">60 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">👑 Plus de 30 tables</span><span class="tier-price">90 000 FCFA</span></div>
+        </div>
+        <div class="deal-badge">💡 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- POS -->
+      <div class="module-card">
+        <div class="module-icon">🧾</div>
+        <h2 class="module-title">DIGIY POS PRO</h2>
+        <p class="module-description">Caisse pro • Stock • Ventes • Stats • Multi-utilisateurs</p>
+        <div class="price-badge">19 900 FCFA / mois</div>
+        <ul class="features">
+          <li>Caisse tactile</li>
+          <li>Stock + alertes</li>
+          <li>Multi-users & rôles</li>
+          <li>Mode hors ligne</li>
+        </ul>
+        <div class="deal-badge">💎 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- MARKET -->
+      <div class="module-card">
+        <div class="module-icon">🛒</div>
+        <h2 class="module-title">DIGIY MARKET</h2>
+        <p class="module-description">Boutique en ligne • Catalogue • Commandes • Paiement mobile</p>
+        <div class="price-badge">19 900 FCFA / mois</div>
+        <ul class="features">
+          <li>Boutique personnalisée</li>
+          <li>Catalogue illimité</li>
+          <li>Commandes & suivi</li>
+          <li>Paiement Wave & OM</li>
+        </ul>
+        <div class="deal-badge">💡 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- BUILD -->
+      <div class="module-card">
+        <div class="module-icon">🏗️</div>
+        <h2 class="module-title">DIGIY BUILD</h2>
+        <p class="module-description">Artisans • Devis • Chantiers • Portfolio • Avis</p>
+        <div class="price-badge">12 900 FCFA / mois</div>
+        <ul class="features">
+          <li>Portfolio</li>
+          <li>Devis</li>
+          <li>Gestion chantiers</li>
+          <li>Avis clients</li>
+        </ul>
+        <div class="deal-badge">💎 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <!-- EXPLORE AGENCE -->
+      <div class="module-card">
+        <div class="module-icon">🧭</div>
+        <h2 class="module-title">DIGIY EXPLORE — AGENCE PARTNER</h2>
+        <p class="module-description">Programme agences • Visibilité internationale • Leads WhatsApp • Zéro commission</p>
+        <div class="price-badge">À partir de 30 000 FCFA / mois</div>
+
+        <div class="tiers-container">
+          <div class="tiers-title">Packs Agence (mensuel)</div>
+          <div class="tier"><span class="tier-name">🟢 ESSENTIEL</span><span class="tier-price">30 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🔵 PRO</span><span class="tier-price">60 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🟣 PREMIUM</span><span class="tier-price">120 000 FCFA</span></div>
+        </div>
+
+        <div class="tiers-container">
+          <div class="tiers-title">Droit d’entrée (one-shot)</div>
+          <div class="tier"><span class="tier-name">🎫 Setup & onboarding</span><span class="tier-price">150 000 FCFA</span></div>
+        </div>
+
+        <div class="deal-badge">🎁 Droit d’entrée OFFERT si annuel (modules)</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+    </div>
+
+    <!-- ✅ SUPPLÉMENTS EXPLORE (3 niveaux, manuel, NO QR) -->
+    <div class="section-title">✨ Suppléments EXPLORE (payants)</div>
+
+    <div class="addon-wrap">
+      <div class="addon-top">
+        <h2>🧭 EXPLORE — Boost Tourisme (Supplément vitrine)</h2>
+        <div class="addon-meta">
+          <span class="chip">📱 phone: <b id="ctxPhone">—</b></span>
+          <span class="chip">🏷️ slug: <b id="ctxSlug">—</b></span>
+          <span class="chip">📦 module actif: <b id="ctxPrimary">—</b></span>
+        </div>
+      </div>
+
+      <div class="addon-grid">
+
+        <div class="addon-card">
+          <h3>Choisis ton niveau</h3>
+          <p style="margin-bottom:10px">
+            Supplément payant : mise en avant dans la vitrine EXPLORE (destination/ville + WhatsApp direct).
+          </p>
+
+          <div class="addon-row" style="margin-top:0">
+            <span class="status-pill none" id="addonStatusPill">statut: none</span>
+            <span style="font-size:12px;font-weight:900;color:rgba(255,255,255,.75)">
+              plan actuel: <b id="addonPlanLabel">—</b>
+            </span>
+          </div>
+
+          <div class="lockbox" id="lockBox" style="display:none;">
+            🔒 Pour activer un supplément EXPLORE, il faut déjà avoir <b>au moins 1 module PRO actif</b>
+            (LOC, MARKET, DRIVER, POS, etc). Active d’abord un module, puis reviens ici.
+          </div>
+
+          <div style="margin-top:12px; display:grid; gap:10px">
+
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:950;color:#facc15">LOCAL</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.82)" id="desc_local">
+                  BOOST TOURISME — Local (badge + présence vitrine locale + WhatsApp direct)
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <div class="addon-price"><span id="price_local">5 000</span> FCFA/mois</div>
+                <a class="btn-addon" id="btnPay_local" href="#">Activer</a>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:950;color:#facc15">STANDARD</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.82)" id="desc_standard">
+                  BOOST TOURISME — Standard (mise en avant + page destination + SEO + leads)
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <div class="addon-price"><span id="price_standard">10 000</span> FCFA/mois</div>
+                <a class="btn-addon" id="btnPay_standard" href="#">Activer</a>
+              </div>
+            </div>
+
+            <div style="display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap">
+              <div>
+                <div style="font-weight:950;color:#facc15">PREMIUM</div>
+                <div style="font-size:12px;color:rgba(255,255,255,.82)" id="desc_premium">
+                  BOOST TOURISME — Premium (priorité + support média + visibilité renforcée)
+                </div>
+              </div>
+              <div style="display:flex;gap:10px;align-items:center">
+                <div class="addon-price"><span id="price_premium">20 000</span> FCFA/mois</div>
+                <a class="btn-addon" id="btnPay_premium" href="#">Activer</a>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="addon-row" style="margin-top:14px">
+            <button class="btn-addon secondary" id="btnAddonRefresh" type="button">🔄 Rafraîchir</button>
+          </div>
+
+          <p style="margin-top:12px;font-size:12px;color:rgba(255,255,255,.86);line-height:1.45">
+            ⚠️ <b>Paiement manuel</b> : transfert Wave + reçu WhatsApp, puis activation.
+            Statuts: <b>active</b> / <b>paused</b> / <b>canceled</b>.
+          </p>
+        </div>
+
+        <div class="addon-card">
+          <h3>À quoi ça sert ?</h3>
+          <p>
+            Tu veux la <b>mise en page EXPLORE</b> + visibilité “ville/destination” + contact WhatsApp direct ?
+            Ce supplément te donne le boost vitrine, sans casser ton module principal.
+          </p>
+          <p style="margin-top:10px;font-size:12px;color:rgba(255,255,255,.86);line-height:1.45">
+            Astuce: ouvre la page avec <b>?phone=</b> + <b>&module=</b> pour voir ton statut réel.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="section-title">🚚 DIGIY FRET — Transport & Logistique</div>
+
+    <div class="modules-grid">
+      <div class="module-card">
+        <div class="module-icon">🚚</div>
+        <h2 class="module-title">DIGIY FRET CHAUFFEUR</h2>
+        <p class="module-description">Transport marchandises • Zones • Commandes pro</p>
+        <div class="tiers-container">
+          <div class="tiers-title">Tarifs Chauffeur (mensuel)</div>
+          <div class="tier"><span class="tier-name">🥉 LOCAL (moins de 50km)</span><span class="tier-price">25 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥈 RÉGIONAL (50-200km)</span><span class="tier-price">60 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥇 NATIONAL (200km+)</span><span class="tier-price">120 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">👑 INTERNATIONAL (CEDEAO)</span><span class="tier-price">200 000 FCFA</span></div>
+        </div>
+        <div class="deal-badge">💎 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+
+      <div class="module-card">
+        <div class="module-icon">📦</div>
+        <h2 class="module-title">DIGIY FRET CLIENT</h2>
+        <p class="module-description">Expéditeurs • Suivi • Paiement mobile</p>
+        <div class="tiers-container">
+          <div class="tiers-title">Tarifs Client (mensuel)</div>
+          <div class="tier"><span class="tier-name">🥉 LOCAL</span><span class="tier-price">9 900 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥈 RÉGIONAL</span><span class="tier-price">25 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">🥇 NATIONAL</span><span class="tier-price">60 000 FCFA</span></div>
+          <div class="tier"><span class="tier-name">👑 INTERNATIONAL</span><span class="tier-price">120 000 FCFA</span></div>
+        </div>
+        <div class="deal-badge">💡 -10% si Multi-Modules</div>
+        <div class="commission-badge">✅ 0% Commission</div>
+      </div>
+    </div>
+
+    <header style="margin-top:40px;">
+      <h2 style="color:#1e293b; margin-bottom:20px;">💳 Prêt à commencer ?</h2>
+      <div class="contact-info">
+        <h3>Contacte JB BEAUVILLE</h3>
+        <div class="contact-details">
+          📞 +221 77 134 28 89<br>
+          💬 WhatsApp disponible
+        </div>
+        <a href="https://beauville.github.io/commencer-a-payer/" class="pay-button">
+          🚀 COMMENCER À PAYER MAINTENANT
+        </a>
+      </div>
+    </header>
+
+  </div>
+
+  <script>
+  (function(){
+    "use strict";
+
+    // === Supabase ===
+    const SUPABASE_URL = "https://wesqmwjjtsefyjnluosj.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indlc3Ftd2pqdHNlZnlqbmx1b3NqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUxNzg4ODIsImV4cCI6MjA4MDc1NDg4Mn0.dZfYOc2iL2_wRYL3zExZFsFSBK6AbMeOid2LrIjcTdA";
+    const sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // === Suppléments explore_boost (3 plans) ===
+    const ADDON_MODULE = "explore_boost";
+    const PLANS = [
+      { code:"local",    label:"LOCAL",    fallbackPrice:5000  },
+      { code:"standard", label:"STANDARD", fallbackPrice:10000 },
+      { code:"premium",  label:"PREMIUM",  fallbackPrice:20000 },
+    ];
+
+    // WhatsApp support (JB)
+    const SUPPORT_WA = "221771342889"; // sans +
+
+    const $ = (id)=>document.getElementById(id);
+
+    function qs(name){
+      try{ return new URL(location.href).searchParams.get(name) || ""; }catch(e){ return ""; }
+    }
+    function normPhone(p){
+      p = String(p||"").trim().replace(/\s+/g,"").replace(/[^\d+]/g,"");
+      if(p.startsWith("00221")) p = "+221" + p.slice(5);
+      if(!p.startsWith("+") && p.startsWith("221")) p = "+" + p;
+      if(!p.startsWith("+221") && /^\d{9}$/.test(p)) p = "+221" + p;
+      return p;
+    }
+    function fmt(n){
+      n = Number(n||0);
+      if(!isFinite(n) || n<=0) return "—";
+      return n.toLocaleString("fr-FR");
+    }
+
+    const phone = normPhone(qs("phone"));
+    const slug  = (qs("slug") || "").trim();
+    const primaryFromQS = (qs("module") || "LOC").trim().toUpperCase();
+
+    if($("ctxPhone")) $("ctxPhone").textContent = phone || "—";
+    if($("ctxSlug"))  $("ctxSlug").textContent  = slug  || "—";
+
+    let resolvedPrimary = primaryFromQS;
+    let currentStatus = "none";
+    let currentPlan = "—";
+
+    function setStatusPill(status){
+      const el = $("addonStatusPill");
+      if(!el) return;
+      el.className = "status-pill " + (status || "none");
+      el.textContent = "statut: " + (status || "none");
+    }
+
+    function waLink({planCode, planLabel, amount}){
+      const txt =
+`DIGIY — Demande activation supplément EXPLORE
+• phone: ${phone || "—"}
+• slug: ${slug || "—"}
+• module_actif: ${resolvedPrimary || "—"}
+• plan: ${planLabel} (${planCode})
+• montant: ${amount} FCFA / mois
+
+J’ai payé par Wave (manuel). Voici le reçu :`;
+      return "https://wa.me/" + SUPPORT_WA + "?text=" + encodeURIComponent(txt);
+    }
+
+    function applyLock(ok){
+      if($("ctxPrimary")) $("ctxPrimary").textContent = ok ? resolvedPrimary : "—";
+      if($("lockBox")) $("lockBox").style.display = ok ? "none" : "block";
+
+      for(const p of PLANS){
+        const b = $("btnPay_" + p.code);
+        if(!b) continue;
+        b.style.pointerEvents = ok ? "auto" : "none";
+        b.style.opacity = ok ? "1" : ".55";
+      }
+    }
+
+    async function isActive(mod){
+      try{
+        // ⚠️ RPC attendu: is_module_active(p_phone, p_module)
+        const r = await sb.rpc("is_module_active", { p_phone: phone, p_module: String(mod||"").toUpperCase() });
+        if(r.error) return false;
+        return !!r.data;
+      }catch(e){
+        return false;
+      }
+    }
+
+    async function resolvePrimaryModule(){
+      if(!phone) return { ok:false, mod: primaryFromQS || "LOC" };
+
+      if(await isActive(primaryFromQS)) return { ok:true, mod: primaryFromQS };
+
+      const candidates = ["LOC","MARKET","DRIVER","POS_PRO","RESTO_PRO","RESTO_RESA","JOBS","BUILD"];
+      for(const m of candidates){
+        if(await isActive(m)) return { ok:true, mod: m };
+      }
+      return { ok:false, mod: primaryFromQS || "LOC" };
+    }
+
+    async function loadPricing(){
+      for(const p of PLANS){
+        let price = p.fallbackPrice;
+
+        try{
+          const pr = await sb
+            .from("digiy_pricing_plans")
+            .select("description, price_month_fcfa, is_active")
+            .eq("module", ADDON_MODULE)
+            .eq("plan_code", p.code)
+            .eq("is_active", true)
+            .maybeSingle();
+
+          if(!pr.error && pr.data){
+            const v = Number(pr.data.price_month_fcfa || 0);
+            if(v>0) price = v;
+            if(pr.data.description && $("desc_"+p.code)) $("desc_"+p.code).textContent = pr.data.description;
+          }
+        }catch(e){}
+
+        if($("price_"+p.code)) $("price_"+p.code).textContent = fmt(price);
+        if($("btnPay_"+p.code)){
+          $("btnPay_"+p.code).href = "https://beauville.github.io/commencer-a-payer/?" +
+            new URLSearchParams({
+              phone: phone || "",
+              slug: slug || "",
+              module: resolvedPrimary || primaryFromQS || "LOC",
+              kind: "addon",
+              m: "EXPLORE",
+              addon_module: ADDON_MODULE,
+              plan: p.code,
+              amount: String(price),
+              from: location.href
+            }).toString();
+        }
+      }
+    }
+
+    async function loadStatus(){
+      if(!phone){
+        currentStatus = "none";
+        currentPlan = "—";
+        setStatusPill("none");
+        if($("addonPlanLabel")) $("addonPlanLabel").textContent = "—";
+        return;
+      }
+
+      try{
+        const st = await sb
+          .from("digiy_subscription_addons")
+          .select("status, addon_plan, updated_at")
+          .eq("phone", phone)
+          .eq("primary_module", resolvedPrimary)
+          .eq("addon_module", ADDON_MODULE)
+          .order("updated_at", { ascending:false })
+          .limit(1)
+          .maybeSingle();
+
+        if(!st.error && st.data){
+          currentStatus = (st.data.status || "none");
+          currentPlan = (st.data.addon_plan || "—");
+        }else{
+          currentStatus = "none";
+          currentPlan = "—";
+        }
+      }catch(e){
+        currentStatus = "none";
+        currentPlan = "—";
+      }
+
+      setStatusPill(currentStatus);
+      if($("addonPlanLabel")) $("addonPlanLabel").textContent = currentPlan;
+
+      // labels (simple)
+      if(currentStatus === "active"){
+        for(const p of PLANS){
+          const b = $("btnPay_" + p.code);
+          if(b) b.textContent = "Gérer (manuel)";
+        }
+      }else if(currentStatus === "paused"){
+        for(const p of PLANS){
+          const b = $("btnPay_" + p.code);
+          if(b) b.textContent = "Reprendre";
+        }
+      }else if(currentStatus === "canceled"){
+        for(const p of PLANS){
+          const b = $("btnPay_" + p.code);
+          if(b) b.textContent = "Réactiver";
+        }
+      }else{
+        for(const p of PLANS){
+          const b = $("btnPay_" + p.code);
+          if(b) b.textContent = "Activer";
+        }
+      }
+    }
+
+    async function refreshAll(){
+      const res = await resolvePrimaryModule();
+      resolvedPrimary = res.mod;
+      applyLock(res.ok);
+
+      await loadPricing();
+      await loadStatus();
+    }
+
+    if($("btnAddonRefresh")) $("btnAddonRefresh").addEventListener("click", refreshAll);
+
+    // Boot
+    refreshAll();
+  })();
+  </script>
+</body>
+</html>
